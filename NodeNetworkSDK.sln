@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeNetworkConsole", "NodeNetworkConsole\NodeNetworkConsole.csproj", "{BF84C3B2-E895-45C0-A544-4AFEB34F209B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{030715FD-6687-4F30-B2F4-87D2998C0507} = {030715FD-6687-4F30-B2F4-87D2998C0507}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeNetwork.SDK", "NodeNetwork.SDK\NodeNetwork.SDK.csproj", "{030715FD-6687-4F30-B2F4-87D2998C0507}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF84C3B2-E895-45C0-A544-4AFEB34F209B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF84C3B2-E895-45C0-A544-4AFEB34F209B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF84C3B2-E895-45C0-A544-4AFEB34F209B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF84C3B2-E895-45C0-A544-4AFEB34F209B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030715FD-6687-4F30-B2F4-87D2998C0507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030715FD-6687-4F30-B2F4-87D2998C0507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030715FD-6687-4F30-B2F4-87D2998C0507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030715FD-6687-4F30-B2F4-87D2998C0507}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8CFB9A5-A160-4E45-B3C5-42AB139A9ACF}
+	EndGlobalSection
+EndGlobal

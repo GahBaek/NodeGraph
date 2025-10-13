@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "NodeNetworkConsole/1.0.0": {
+        "dependencies": {
+          "NodeNetwork.SDK": "1.0.0"
+        },
+        "runtime": {
+          "NodeNetworkConsole.dll": {}
+        }
+      },
+      "NodeNetwork.SDK/1.0.0": {
+        "runtime": {
+          "NodeNetwork.SDK.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NodeNetworkConsole/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NodeNetwork.SDK/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

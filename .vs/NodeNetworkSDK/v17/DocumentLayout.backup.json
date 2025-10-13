@@ -1,0 +1,175 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\source\\repos\\NodeNetworkSDK\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BF84C3B2-E895-45C0-A544-4AFEB34F209B}|NodeNetworkConsole\\NodeNetworkConsole.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetworkconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF84C3B2-E895-45C0-A544-4AFEB34F209B}|NodeNetworkConsole\\NodeNetworkConsole.csproj|solutionrelative:nodenetworkconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\ipage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\models\\ipage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\op.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\models\\op.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\services\\ipagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\services\\ipagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\operations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\models\\operations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\ctx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\models\\ctx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\inode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\models\\inode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\iedge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\models\\iedge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\edge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetwork.SDK.csproj|solutionrelative:nodenetwork.sdk\\models\\edge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 165,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetworkConsole\\Program.cs",
+              "RelativeDocumentMoniker": "NodeNetworkConsole\\Program.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetworkConsole\\Program.cs",
+              "RelativeToolTip": "NodeNetworkConsole\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-25T06:54:01.62Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Op.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Op.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\Op.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Op.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Models\\Op.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T06:59:48.923Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IPageManager.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Services\\IPageManager.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Services\\IPageManager.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Services\\IPageManager.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Services\\IPageManager.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAADwvx0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T02:29:56.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Operations.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Operations.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\Operations.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Operations.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Models\\Operations.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T02:29:33.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Edge.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Edge.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\Edge.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Edge.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Models\\Edge.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T02:28:43.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IEdge.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\IEdge.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\IEdge.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\IEdge.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Models\\IEdge.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T02:24:44.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "INode.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\INode.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\INode.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\INode.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Models\\INode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T01:52:57.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Ctx.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Ctx.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\Ctx.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Ctx.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Models\\Ctx.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAwAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T01:45:46.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IPage.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\IPage.cs",
+              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\IPage.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\IPage.cs",
+              "RelativeToolTip": "NodeNetwork.SDK\\Models\\IPage.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAADwv1kAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T06:58:04.786Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
