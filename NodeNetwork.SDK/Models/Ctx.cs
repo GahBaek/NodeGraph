@@ -14,6 +14,11 @@ namespace NodeNetwork.SDK.Models
 
         Ctx(List<IReadOnlyDictionary<string, object?>> layers,  object? result) { _layers = layers; _result = result; }
 
+        public static Ctx Empty()
+        {
+            return new Ctx(new(), null);
+        }
+
         // 초기 레이어, 가변 인자를 받는다. 튜플을 여러 개 받을 수 있도록 한다.
         public static Ctx Of(params (string key, object? value)[]pairs)
             // StringComparer 클래스는 문자열 비교 방법을 정의한 추상화 객체이다.

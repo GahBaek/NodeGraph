@@ -42,7 +42,6 @@ namespace NodeNetwork.SDK.Models
             var removed = _nodes.Remove(nodeId);
             if (removed)
             {
-                // 해당 노드와 관련된 모든 Edge 제거
                 _edges.RemoveWhere(e => e.FromNodeId == nodeId || e.ToNodeId == nodeId);
             }
             return removed;
@@ -93,7 +92,7 @@ namespace NodeNetwork.SDK.Models
 
             var current = ctx;
 
-            foreach (var nodeId in validation.Order!)   // ← _topoOrder 대신 validation.Order 사용
+            foreach (var nodeId in validation.Order!)   
                 current = _nodes[nodeId].Exec(current);
 
             if (current.TryGet<object?>(ResultKey, out var v))

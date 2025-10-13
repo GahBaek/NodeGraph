@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("NodeNetwork.SDK")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("NodeNetworkSDK")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+492b5ee5196c92d5c3066085a6e38a781ed6bd9a")]
-[assembly: System.Reflection.AssemblyProductAttribute("NodeNetwork.SDK")]
-[assembly: System.Reflection.AssemblyTitleAttribute("NodeNetwork.SDK")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9ef97751e2b05f6d3d36933c0dfb8e3c43df804")]
+[assembly: System.Reflection.AssemblyProductAttribute("NodeNetworkSDK")]
+[assembly: System.Reflection.AssemblyTitleAttribute("NodeNetworkSDK")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // MSBuild WriteCodeFragment 클래스에서 생성되었습니다.

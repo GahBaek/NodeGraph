@@ -15,9 +15,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj",
-      "projectName": "NodeNetwork.SDK",
-      "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj",
+      "projectUniqueName": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj",
+      "projectName": "NodeNetworkSDK",
+      "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj",
       "packagesPath": "C:\\Users\\HVS\\.nuget\\packages\\",
       "outputPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\obj\\",
       "projectStyle": "PackageReference",

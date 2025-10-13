@@ -1,0 +1,12 @@
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\bin\Debug\net9.0\NodeNetworkSDK.deps.json
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\bin\Debug\net9.0\NodeNetworkSDK.dll
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\bin\Debug\net9.0\NodeNetworkSDK.pdb
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\NodeNetworkSDK.GeneratedMSBuildEditorConfig.editorconfig
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\NodeNetworkSDK.AssemblyInfoInputs.cache
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\NodeNetworkSDK.AssemblyInfo.cs
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\NodeNetworkSDK.csproj.CoreCompileInputs.cache
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\NodeNetworkSDK.sourcelink.json
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\NodeNetworkSDK.dll
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\refint\NodeNetworkSDK.dll
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\NodeNetworkSDK.pdb
+D:\source\repos\NodeNetworkSDK\NodeNetwork.SDK\obj\Debug\net9.0\ref\NodeNetworkSDK.dll
