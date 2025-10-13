@@ -18,7 +18,7 @@ namespace NodeGraph
         public static void Main(string[] args)
         {
 
-            var host = ConvMVVM2Host.CreateHost<BootStrapper, Application>(args, "App");
+            var host = ConvMVVM2Host.CreateHost<BootStrapper, System.Windows.Application>(args, "App");
             host.AddWPFDialogService()
                 .Build()
                 .ShutdownMode(System.Windows.ShutdownMode.OnMainWindowClose)

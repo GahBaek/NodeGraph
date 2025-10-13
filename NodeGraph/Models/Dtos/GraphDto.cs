@@ -13,7 +13,6 @@ namespace NodeGraph.Models.Dtos
         public string? ResultKey { get; set; }
         public List<NodeDto> Nodes { get; set; }
         public List<EdgeDto> Edges { get; set; }
-
         #endregion
     }
 }

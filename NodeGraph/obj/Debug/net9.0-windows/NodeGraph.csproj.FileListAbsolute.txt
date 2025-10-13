@@ -23,3 +23,8 @@ D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\refint\NodeGra
 D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\NodeGraph.pdb
 D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\NodeGraph.genruntimeconfig.cache
 D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\ref\NodeGraph.dll
+D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\Windows\MainWindow.g.cs
+D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\Views\ItemView.g.cs
+D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\Views\MainView.g.cs
+D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\Views\PageView.g.cs
+D:\source\repos\NodeNetworkSDK\NodeGraph\obj\Debug\net9.0-windows\Windows\CommonWindow.g.cs

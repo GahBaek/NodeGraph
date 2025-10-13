@@ -186,6 +186,15 @@
           }
         }
       },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black/20.2.13": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Black.v20.2.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Black.v20.2.dll": {}
+        }
+      },
       "DevExpress.Wpf.Core/25.1.5": {
         "type": "package",
         "dependencies": {
@@ -218,6 +227,15 @@
         },
         "runtime": {
           "lib/net8.0-windows/DevExpress.Xpf.Themes.Office2019Colorful.v25.1.dll": {}
+        }
+      },
+      "DevExpress.Wpf.Themes.VS2019Dark/25.1.5": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0-windows/DevExpress.Xpf.Themes.VS2019Dark.v25.1.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0-windows/DevExpress.Xpf.Themes.VS2019Dark.v25.1.dll": {}
         }
       },
       "Microsoft-WindowsAPICodePack-Core/1.1.5": {
@@ -1024,6 +1042,18 @@
         "lib/net8.0/DevExpress.Printing.v25.1.Core.xml"
       ]
     },
+    "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black/20.2.13": {
+      "sha512": "uSs0TaU5mNDtNOkKp1WXByaFcVttJ8QzPzn5N0KVxGYyonZe76gbE3syfZiQ+CvsIOIcuI5nXAQuk1mSRL4NgA==",
+      "type": "package",
+      "path": "devexpress.windowsdesktop.wpf.themes.office2010black/20.2.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.windowsdesktop.wpf.themes.office2010black.20.2.13.nupkg.sha512",
+        "devexpress.windowsdesktop.wpf.themes.office2010black.nuspec",
+        "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Black.v20.2.dll"
+      ]
+    },
     "DevExpress.Wpf.Core/25.1.5": {
       "sha512": "fuF6+6S3OIFApyO/qwZW/KAyLRGwGBQMzyS18S/NKwm6EIQMbT4/ZK7fsbAkc1mkSdyNjXtgeHNrgidAWY1pgw==",
       "type": "package",
@@ -1071,6 +1101,19 @@
         "devexpress.wpf.themes.office2019colorful.nuspec",
         "lib/net462/DevExpress.Xpf.Themes.Office2019Colorful.v25.1.dll",
         "lib/net8.0-windows/DevExpress.Xpf.Themes.Office2019Colorful.v25.1.dll"
+      ]
+    },
+    "DevExpress.Wpf.Themes.VS2019Dark/25.1.5": {
+      "sha512": "LB/7Xq+Q8HiF99MLKbYccVTlldGz0NOCl5J1r7ESTToohrpWBJuIGX/zHikhNEefrj2+HUb12k5N2byCLdV8pQ==",
+      "type": "package",
+      "path": "devexpress.wpf.themes.vs2019dark/25.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.wpf.themes.vs2019dark.25.1.5.nupkg.sha512",
+        "devexpress.wpf.themes.vs2019dark.nuspec",
+        "lib/net462/DevExpress.Xpf.Themes.VS2019Dark.v25.1.dll",
+        "lib/net8.0-windows/DevExpress.Xpf.Themes.VS2019Dark.v25.1.dll"
       ]
     },
     "Microsoft-WindowsAPICodePack-Core/1.1.5": {
@@ -2479,7 +2522,9 @@
       "CommunityToolkit.Mvvm >= 8.4.0",
       "ConvMVVM2.WPF >= 1.21.10.21",
       "DevExpress.Images >= 25.1.5",
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black >= 20.2.13",
       "DevExpress.Wpf.Core >= 25.1.5",
+      "DevExpress.Wpf.Themes.VS2019Dark >= 25.1.5",
       "Microsoft.Extensions.DependencyInjection >= 9.0.9",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 9.0.9",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.135",
@@ -2558,7 +2603,15 @@
             "target": "Package",
             "version": "[25.1.5, )"
           },
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black": {
+            "target": "Package",
+            "version": "[20.2.13, )"
+          },
           "DevExpress.Wpf.Core": {
+            "target": "Package",
+            "version": "[25.1.5, )"
+          },
+          "DevExpress.Wpf.Themes.VS2019Dark": {
             "target": "Package",
             "version": "[25.1.5, )"
           },

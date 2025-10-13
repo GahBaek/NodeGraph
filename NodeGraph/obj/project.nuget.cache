@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nab1e3ltCtQ=",
+  "dgSpecHash": "/iBagsMqN+E=",
   "success": true,
   "projectFilePath": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\NodeGraph.csproj",
   "expectedPackageFiles": [
@@ -15,8 +15,10 @@
     "C:\\Users\\HVS\\.nuget\\packages\\devexpress.pdf.core\\25.1.5\\devexpress.pdf.core.25.1.5.nupkg.sha512",
     "C:\\Users\\HVS\\.nuget\\packages\\devexpress.pdf.drawing\\25.1.5\\devexpress.pdf.drawing.25.1.5.nupkg.sha512",
     "C:\\Users\\HVS\\.nuget\\packages\\devexpress.printing.core\\25.1.5\\devexpress.printing.core.25.1.5.nupkg.sha512",
+    "C:\\Users\\HVS\\.nuget\\packages\\devexpress.windowsdesktop.wpf.themes.office2010black\\20.2.13\\devexpress.windowsdesktop.wpf.themes.office2010black.20.2.13.nupkg.sha512",
     "C:\\Users\\HVS\\.nuget\\packages\\devexpress.wpf.core\\25.1.5\\devexpress.wpf.core.25.1.5.nupkg.sha512",
     "C:\\Users\\HVS\\.nuget\\packages\\devexpress.wpf.themes.office2019colorful\\25.1.5\\devexpress.wpf.themes.office2019colorful.25.1.5.nupkg.sha512",
+    "C:\\Users\\HVS\\.nuget\\packages\\devexpress.wpf.themes.vs2019dark\\25.1.5\\devexpress.wpf.themes.vs2019dark.25.1.5.nupkg.sha512",
     "C:\\Users\\HVS\\.nuget\\packages\\microsoft-windowsapicodepack-core\\1.1.5\\microsoft-windowsapicodepack-core.1.1.5.nupkg.sha512",
     "C:\\Users\\HVS\\.nuget\\packages\\microsoft-windowsapicodepack-shell\\1.1.5\\microsoft-windowsapicodepack-shell.1.1.5.nupkg.sha512",
     "C:\\Users\\HVS\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",

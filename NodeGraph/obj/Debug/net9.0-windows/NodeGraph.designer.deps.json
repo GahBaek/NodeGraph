@@ -138,6 +138,14 @@
           }
         }
       },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black/20.2.13": {
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Black.v20.2.dll": {
+            "assemblyVersion": "20.2.13.0",
+            "fileVersion": "20.2.13.0"
+          }
+        }
+      },
       "DevExpress.Wpf.Core/25.1.5": {
         "dependencies": {
           "DevExpress.Data": "25.1.5",
@@ -158,6 +166,14 @@
       "DevExpress.Wpf.Themes.Office2019Colorful/25.1.5": {
         "runtime": {
           "lib/net8.0-windows/DevExpress.Xpf.Themes.Office2019Colorful.v25.1.dll": {
+            "assemblyVersion": "25.1.5.0",
+            "fileVersion": "25.1.5.0"
+          }
+        }
+      },
+      "DevExpress.Wpf.Themes.VS2019Dark/25.1.5": {
+        "runtime": {
+          "lib/net8.0-windows/DevExpress.Xpf.Themes.VS2019Dark.v25.1.dll": {
             "assemblyVersion": "25.1.5.0",
             "fileVersion": "25.1.5.0"
           }
@@ -686,6 +702,13 @@
       "path": "devexpress.printing.core/25.1.5",
       "hashPath": "devexpress.printing.core.25.1.5.nupkg.sha512"
     },
+    "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black/20.2.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uSs0TaU5mNDtNOkKp1WXByaFcVttJ8QzPzn5N0KVxGYyonZe76gbE3syfZiQ+CvsIOIcuI5nXAQuk1mSRL4NgA==",
+      "path": "devexpress.windowsdesktop.wpf.themes.office2010black/20.2.13",
+      "hashPath": "devexpress.windowsdesktop.wpf.themes.office2010black.20.2.13.nupkg.sha512"
+    },
     "DevExpress.Wpf.Core/25.1.5": {
       "type": "package",
       "serviceable": true,
@@ -699,6 +722,13 @@
       "sha512": "sha512-jNjEm1pGCjdZZkeSRdw4N/pn15iWaj/VsuEdsexA5hAHDFt3wMQcj9kC8F2uVYErpvlq5UAmM2Xa+OMADD/rpA==",
       "path": "devexpress.wpf.themes.office2019colorful/25.1.5",
       "hashPath": "devexpress.wpf.themes.office2019colorful.25.1.5.nupkg.sha512"
+    },
+    "DevExpress.Wpf.Themes.VS2019Dark/25.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LB/7Xq+Q8HiF99MLKbYccVTlldGz0NOCl5J1r7ESTToohrpWBJuIGX/zHikhNEefrj2+HUb12k5N2byCLdV8pQ==",
+      "path": "devexpress.wpf.themes.vs2019dark/25.1.5",
+      "hashPath": "devexpress.wpf.themes.vs2019dark.25.1.5.nupkg.sha512"
     },
     "Microsoft-WindowsAPICodePack-Core/1.1.5": {
       "type": "package",

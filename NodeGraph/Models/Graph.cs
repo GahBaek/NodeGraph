@@ -19,8 +19,8 @@ namespace NodeGraph.Models
         public bool IsDirty { get; set; } // save
         private List<NodeModel> Nodes = new List<NodeModel>();
         private List<EdgeModel> Edges = new List<EdgeModel>();
-        // public EditorState Editor { get; } = new();
-        // public GraphDocument(Page page) => Page = page;
+        
+        public Graph(Page page) => Page = page;
         #endregion // Public Property
 
         #region Public Functions
@@ -46,9 +46,10 @@ namespace NodeGraph.Models
             };
         }
 
-        public static Graph Convert(GraphDto dto)
+        public static Graph Convert(GraphDto dto, Page page)
         {
-            var graph = new Graph()
+            // page 수정해야함.
+            var graph = new Graph(page)
             {
                 
             };
