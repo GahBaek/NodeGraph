@@ -45,31 +45,31 @@ namespace NodeGraph.ViewModels
         public ObservableCollection<EdgeViewModel> Edges { get; set; }
         
         [Property]
-        public string Name;
+        public string _PageName;
         [Property]
-        public string ResultKey;
+        public string _PageResultKey;
 
         [Property]
-        public string OpName;
+        public string _OpName;
         [Property]
-        public string Input1;
+        public string _Input1;
         [Property]
-        public string Input2;
+        public string _Input2;
         [Property]
-        public string ResultName;
+        public string _ResultName;
         
         public Func<double, double, double> Operation { get; set; } = Operations.Add;
 
         [Property]
-        public NodeViewModel SelectedNodeFrom;
+        public NodeViewModel _SelectedNodeFrom;
         [Property]
-        public NodeViewModel SelectedNodeTo;
+        public NodeViewModel _SelectedNodeTo;
         [Property]
-        public string fromKey = "";
+        public string _FromKey = "";
         [Property]
-        public string toKey = "";
+        public string _ToKey = "";
         [Property]
-        public EdgeViewModel SelectedEdgeVM;
+        public EdgeViewModel _SelectedEdgeVM;
         #endregion // Public Property
 
         #region Command
@@ -127,11 +127,11 @@ namespace NodeGraph.ViewModels
         {
             if (this.SelectedNodeFrom == null || this.SelectedNodeTo == null)
                 return;
-            if (this.fromKey == null || this.toKey == null)
+            if (this.FromKey == null || this.ToKey == null)
                 return;
             try
             { 
-                pageModel.Connect(SelectedNodeFrom.Id, fromKey, SelectedNodeFrom.Id, toKey); 
+                pageModel.Connect(SelectedNodeFrom.Id, FromKey, SelectedNodeFrom.Id, ToKey); 
             }
             catch (Exception e)
             {
@@ -145,11 +145,11 @@ namespace NodeGraph.ViewModels
         {
             if (this.SelectedNodeFrom == null || this.SelectedNodeTo == null)
                 return;
-            if (this.fromKey == null || this.toKey == null)
+            if (this.FromKey == null || this.ToKey == null)
                 return;
             try
             {
-                pageModel.Disconnect(SelectedNodeFrom.Id, fromKey, SelectedNodeFrom.Id, toKey);
+                pageModel.Disconnect(SelectedNodeFrom.Id, FromKey, SelectedNodeFrom.Id, ToKey);
             }
             catch (Exception e)
             {
