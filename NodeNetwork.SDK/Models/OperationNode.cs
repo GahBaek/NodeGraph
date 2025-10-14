@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NodeNetwork.SDK.Models
 {
-    public sealed class Op : INode
+    public sealed class OperationNode : INode
     {
         public Guid Id { get; } = Guid.NewGuid();
         public string Name { get; }
@@ -16,13 +16,13 @@ namespace NodeNetwork.SDK.Models
         private readonly Func<double, double, double> _op;
         private readonly string _aKey, _bKey, _outKey;
 
-        public Op(string name, string aKey, string bKey, string outKey, Func<double, double, double> op)
+        public OperationNode(string name, string aKey, string bKey, string outKey, Func<double, double, double> op)
         {
             Name = name;
             _aKey = aKey; _bKey = bKey; _outKey = outKey;
             _op = op;
             Inputs = new[] { _aKey, _bKey };
-            Outputs = new[] { _outKey };
+            Outputs = new[] { _outKey }; 
         }
 
         public IContext Exec(IContext ctx)

@@ -1,12 +1,28 @@
-﻿using System;
+﻿using NodeNetworkSDK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace NodeNetwork.SDK.Models
 {
-    public interface IPage   
+    public interface IPage 
     {
-        Guid Id { get; }
+        string Name { get; }
+        string ResultKey { get; }
+        void AddNode(INode node);
+        GraphValidationResult Validate();
+        IContext Exec(IContext ctx);
+    }
+
+    // 연결, 순서, 검증
+    public sealed class Page : IPage
+    {
+
+    }
+}
+
+/*
+ * Guid Id { get; }
         string Name { get; }
 
         // 노드/엣지 관리
@@ -19,12 +35,10 @@ namespace NodeNetwork.SDK.Models
         // 검증/실행
         GraphValidationResult Validate(); 
         IContext Exec(IContext ctx);
-    }
+ */
 
-
-    public sealed class Page : IPage
-    {
-        public Guid Id { get; } = Guid.NewGuid();
+/*
+ * public Guid Id { get; } = Guid.NewGuid();
         public string Name { get; }
         public string ResultKey { get; }
         private readonly Dictionary<Guid, INode> _nodes = new();
@@ -139,5 +153,5 @@ namespace NodeNetwork.SDK.Models
         public static GraphValidationResult Ok(IReadOnlyList<Guid> order) => new(true, null, order);
         public static GraphValidationResult Fail(string err) => new(false, err, null);
     }
-
 }
+ */
