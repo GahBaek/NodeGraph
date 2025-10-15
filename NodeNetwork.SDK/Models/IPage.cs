@@ -5,21 +5,49 @@ using System.Linq;
 
 namespace NodeNetwork.SDK.Models
 {
-    public interface IPage 
+    public interface IPage
     {
         string Name { get; }
         string ResultKey { get; }
         void AddNode(INode node);
-        GraphValidationResult Validate();
         IContext Exec(IContext ctx);
     }
 
-    // 연결, 순서, 검증
     public sealed class Page : IPage
     {
+        private readonly List<INode> _nodes = new();
+        public string Name { get; }
+        public string ResultKey { get; }
+        public Page(string name, string resultKey) { Name = name; ResultKey = resultKey; }
 
+        public void AddNode(INode node) => _nodes.Add(node);
+
+        public IContext Exec(IContext ctx)
+        {
+            foreach (var n in _nodes) ctx = n.Exec(ctx);
+            
+
+            if (ctx.TryGet<object>(ResultKey, out var res)) ctx.SetResult(res);
+            return ctx;
+        }
     }
+
+    // 연결, 순서, 검증
 }
+public sealed class GraphValidationResult
+{
+    public bool IsValid { get; }
+    public string? Error { get; }
+    public IReadOnlyList<Guid>? Order { get; }
+
+    private GraphValidationResult(bool ok, string? err, IReadOnlyList<Guid>? order)
+    { IsValid = ok; Error = err; Order = order; }
+
+    public static GraphValidationResult Ok(IReadOnlyList<Guid> order) => new(true, null, order);
+    public static GraphValidationResult Fail(string err) => new(false, err, null);
+}
+
+
 
 /*
  * Guid Id { get; }
@@ -140,18 +168,4 @@ namespace NodeNetwork.SDK.Models
             return order.Count == _nodes.Count ? order : null;
         }
     }
-
-    public sealed class GraphValidationResult
-    {
-        public bool IsValid { get; }
-        public string? Error { get; }
-        public IReadOnlyList<Guid>? Order { get; }
-
-        private GraphValidationResult(bool ok, string? err, IReadOnlyList<Guid>? order)
-        { IsValid = ok; Error = err; Order = order; }
-
-        public static GraphValidationResult Ok(IReadOnlyList<Guid> order) => new(true, null, order);
-        public static GraphValidationResult Fail(string err) => new(false, err, null);
-    }
-}
  */

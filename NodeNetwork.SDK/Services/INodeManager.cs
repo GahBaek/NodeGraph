@@ -1,5 +1,6 @@
 ﻿using NodeNetwork.SDK.Models;
 using NodeNetworkSDK.Models;
+using NodeNetworkSDK.Models.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,34 +9,40 @@ using System.Threading.Tasks;
 
 namespace NodeNetworkSDK.Services
 {
-
     public interface INodeManager
     {
-        // var page = manager.createNode(context, "Page", "Page1", "Page.a");
-        IComposite CreateNode(IContext context, string contextType, string contextName /*inputs*/);
-        // var ifelse = manager.addNode(page, IContext, "IfElse", "IfElse1", "sectionName");
-        IContext AddNode(IComposite context, string contextType, string contextName /*inputs*/);
-        void RemoveNode();
+        void Add(IPage page, INode node);
+        OperationNode Operation(string name, string aKey, string bKey, string outKey, Operation op);
+        CompareNode Compare(string name, string aKey, string bKey, string outKey, Comparator cmp);
+        IfNode If(string name, string condKey, string thenKey, string elseKey, string outKey);
+        SelectNode Select(string name, string selectorKey, string outKey, params (string caseValue, string fromKey)[] routes);
     }
 
-    public class NodeManager : INodeManager
+    public sealed class NodeManager : INodeManager
     {
-        public string key;
-        public string contextType;
-        public NodeManager(string key) { }
-        public IContext AddNode(IComposite context, string contextType, string contextName)
-        {
-            throw new NotImplementedException();
+        // 실질적인 addNode
+        public void Add(IPage page, INode node) 
+        { 
+            page.AddNode(node);
         }
 
-        public IComposite CreateNode(IContext context, string contextType, string contextName)
+        // 각 유형에 맞는 Node return 하는 함수들
+        public OperationNode Operation(string name, string aKey, string bKey, string outKey, Operation op)
         {
-            throw new NotImplementedException();
+            return new(name, aKey, bKey, outKey, op);
         }
-
-        public void RemoveNode()
+        public CompareNode Compare(string name, string aKey, string bKey, string outKey, Comparator cmp)
         {
-            throw new NotImplementedException();
+            return new(name, aKey, bKey, outKey, cmp);
+        }
+        public IfNode If(string name, string condKey, string thenKey, string elseKey, string outKey)
+        {
+            return new(name, condKey, thenKey, elseKey, outKey);
+        }
+        public SelectNode Select(string name, string selectorKey, string outKey, params (string, string)[] routes)
+        {
+            return new(name, selectorKey, outKey, routes);
         }
     }
+
 }
