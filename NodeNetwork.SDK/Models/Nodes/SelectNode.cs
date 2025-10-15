@@ -31,5 +31,10 @@ namespace NodeNetworkSDK.Models.Nodes
             var v = ctx.Get<object>(fromKey);
             return ctx.Set(_out, v);
         }
+
+        public INode CloneWithKeyRemap(Func<string, string> remap)
+        {
+            return new SelectNode(Name, remap(_selectorKey), remap(_out));
+        }
     }
 }

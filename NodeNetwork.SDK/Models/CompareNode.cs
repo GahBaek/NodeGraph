@@ -1,4 +1,5 @@
 ﻿using NodeNetwork.SDK.Models;
+using NodeNetworkSDK.Models.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -33,6 +34,11 @@ namespace NodeNetworkSDK.Models
                 _ => throw new NotSupportedException(_cmp.ToString())
             };
             return ctx.Set(_out, r);
+        }
+
+        public INode CloneWithKeyRemap(Func<string, string> remap)
+        {
+            return new CompareNode(Name, remap(_a), remap(_b), remap(_out), _cmp);
         }
     }
 }

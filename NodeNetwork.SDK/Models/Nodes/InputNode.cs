@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace NodeNetworkSDK.Models.Nodes
 {
+    // 값 입력 받는 노드
     public sealed class InputNode : INode
     {
         private readonly string _key;
@@ -17,6 +18,11 @@ namespace NodeNetworkSDK.Models.Nodes
 
         public IContext Exec(IContext ctx)
             => ctx.Set(_key, _provider());
+
+        public INode CloneWithKeyRemap(Func<string, string> remap)
+        {
+            return new InputNode(Name, remap(_key), _provider);
+        }
     }
 
 }

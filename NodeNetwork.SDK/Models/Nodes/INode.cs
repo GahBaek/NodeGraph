@@ -1,15 +1,18 @@
-﻿using System;
+﻿using NodeNetwork.SDK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeNetwork.SDK.Models
+namespace NodeNetworkSDK.Models.Nodes
 {
     // 연산 로직
     public interface INode
     {
         string Name { get; }
         IContext Exec(IContext ctx);
+
+        INode CloneWithKeyRemap(Func<string, string> remap);
     }
 }

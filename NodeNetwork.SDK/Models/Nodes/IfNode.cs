@@ -1,9 +1,12 @@
 ﻿using NodeNetwork.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace NodeNetworkSDK.Models.Nodes
 {
@@ -25,6 +28,11 @@ namespace NodeNetworkSDK.Models.Nodes
             bool cond = ctx.Get<bool>(_condKey);
             object val = cond ? ctx.Get<object>(_thenKey) : ctx.Get<object>(_elseKey);
             return ctx.Set(_out, val);
+        }
+
+        public INode CloneWithKeyRemap(Func<string, string> remap)
+        {
+            return new IfNode(Name, remap(_condKey), remap(_thenKey), remap(_elseKey), remap(_out));
         }
     }
 }

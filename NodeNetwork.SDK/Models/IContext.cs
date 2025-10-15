@@ -26,6 +26,7 @@ namespace NodeNetwork.SDK.Models
         T Get<T>(string key);
         IContext SetResult<T>(T value);
         bool TryGetResult<T>(out T value);
-        
+        bool TryGet(string key, out object? value);
+
     }
 }

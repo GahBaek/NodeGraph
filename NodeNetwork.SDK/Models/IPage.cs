@@ -1,4 +1,5 @@
 ﻿using NodeNetworkSDK.Models;
+using NodeNetworkSDK.Models.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +12,9 @@ namespace NodeNetwork.SDK.Models
         string ResultKey { get; }
         void AddNode(INode node);
         IContext Exec(IContext ctx);
+        IEnumerable<INode> EnumerateNodes();
     }
 
-    public sealed class Page : IPage
-    {
-        private readonly List<INode> _nodes = new();
-        public string Name { get; }
-        public string ResultKey { get; }
-        public Page(string name, string resultKey) { Name = name; ResultKey = resultKey; }
-
-        public void AddNode(INode node) => _nodes.Add(node);
-
-        public IContext Exec(IContext ctx)
-        {
-            foreach (var n in _nodes) ctx = n.Exec(ctx);
-            
-
-            if (ctx.TryGet<object>(ResultKey, out var res)) ctx.SetResult(res);
-            return ctx;
-        }
-    }
-
-    // 연결, 순서, 검증
 }
 public sealed class GraphValidationResult
 {
@@ -44,6 +26,7 @@ public sealed class GraphValidationResult
     { IsValid = ok; Error = err; Order = order; }
 
     public static GraphValidationResult Ok(IReadOnlyList<Guid> order) => new(true, null, order);
+    public static GraphValidationResult Ok() => new(true, null, null);
     public static GraphValidationResult Fail(string err) => new(false, err, null);
 }
 

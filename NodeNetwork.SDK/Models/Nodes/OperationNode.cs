@@ -1,10 +1,11 @@
-﻿using System;
+﻿using NodeNetwork.SDK.Models;
+using NodeNetworkSDK.Models;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NodeNetwork.SDK.Models;
-using NodeNetworkSDK.Models;
 
 namespace NodeNetworkSDK.Models.Nodes
 {
@@ -34,5 +35,8 @@ namespace NodeNetworkSDK.Models.Nodes
             };
             return ctx.Set(_out, r);
         }
+
+        public INode CloneWithKeyRemap(Func<string, string> remap)
+    => new OperationNode(Name, remap(_a), remap(_b), remap(_out), _op);
     }
 }
