@@ -13,5 +13,4 @@ namespace NodeNetwork.SDK.Models
     Guid ToNodeId,
     string ToPortKey
 );
-
 }

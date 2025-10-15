@@ -12,37 +12,10 @@ namespace NodeNetworkSDK.Services
     public interface INodeManager
     {
         void Add(IPage page, INode node);
+
         OperationNode Operation(string name, string aKey, string bKey, string outKey, Operation op);
         CompareNode Compare(string name, string aKey, string bKey, string outKey, Comparator cmp);
         IfNode If(string name, string condKey, string thenKey, string elseKey, string outKey);
         SelectNode Select(string name, string selectorKey, string outKey, params (string caseValue, string fromKey)[] routes);
     }
-
-    public sealed class NodeManager : INodeManager
-    {
-        // 실질적인 addNode
-        public void Add(IPage page, INode node) 
-        { 
-            page.AddNode(node);
-        }
-
-        // 각 유형에 맞는 Node return 하는 함수들
-        public OperationNode Operation(string name, string aKey, string bKey, string outKey, Operation op)
-        {
-            return new(name, aKey, bKey, outKey, op);
-        }
-        public CompareNode Compare(string name, string aKey, string bKey, string outKey, Comparator cmp)
-        {
-            return new(name, aKey, bKey, outKey, cmp);
-        }
-        public IfNode If(string name, string condKey, string thenKey, string elseKey, string outKey)
-        {
-            return new(name, condKey, thenKey, elseKey, outKey);
-        }
-        public SelectNode Select(string name, string selectorKey, string outKey, params (string, string)[] routes)
-        {
-            return new(name, selectorKey, outKey, routes);
-        }
-    }
-
 }

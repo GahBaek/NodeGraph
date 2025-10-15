@@ -18,11 +18,6 @@ namespace NodeNetworkSDK.Models.Nodes
 
         public IContext Exec(IContext ctx)
             => ctx.Set(_key, _provider());
-
-        public INode CloneWithKeyRemap(Func<string, string> remap)
-        {
-            return new InputNode(Name, remap(_key), _provider);
-        }
     }
 
 }

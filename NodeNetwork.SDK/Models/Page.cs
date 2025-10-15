@@ -21,8 +21,6 @@ namespace NodeNetworkSDK.Models
         public IContext Exec(IContext ctx)
         {
             foreach (var n in _nodes) ctx = n.Exec(ctx);
-
-
             if (ctx.TryGet<object>(ResultKey, out var res)) ctx.SetResult(res);
             return ctx;
         }

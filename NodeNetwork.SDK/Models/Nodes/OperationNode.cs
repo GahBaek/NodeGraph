@@ -35,8 +35,5 @@ namespace NodeNetworkSDK.Models.Nodes
             };
             return ctx.Set(_out, r);
         }
-
-        public INode CloneWithKeyRemap(Func<string, string> remap)
-    => new OperationNode(Name, remap(_a), remap(_b), remap(_out), _op);
     }
 }

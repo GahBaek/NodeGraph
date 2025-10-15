@@ -12,7 +12,5 @@ namespace NodeNetworkSDK.Models.Nodes
     {
         string Name { get; }
         IContext Exec(IContext ctx);
-
-        INode CloneWithKeyRemap(Func<string, string> remap);
     }
 }
