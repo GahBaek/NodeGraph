@@ -14,11 +14,26 @@ namespace NodeNetworkSDK.Models.Nodes
     public sealed class OperationNode : INode
     {
         public string Name { get; }
+        public Guid Id { get; }
+
+        private static readonly IReadOnlyDictionary<string, Port> _inputSpec =
+            new Dictionary<string, Port>
+            {
+            };
+
+        private static readonly IReadOnlyDictionary<string, Port> _outputSpec =
+            new Dictionary<string, Port>
+            {
+                ["out"] = new Port(typeof(object))
+            };
+
+        public IReadOnlyDictionary<string, Port> Inputs => _inputSpec;
+        public IReadOnlyDictionary<string, Port> Outputs => _outputSpec;
         private readonly string _a, _b, _out;
         private readonly Operation _op;
 
         public OperationNode(string name, string aKey, string bKey, string outKey, Operation op)
-        { Name = name; _a = aKey; _b = bKey; _out = outKey; _op = op; }
+        { Name = name; _a = aKey; _b = bKey; _out = outKey; _op = op; Id = Guid.NewGuid(); }
 
 
         public IContext Exec(IContext ctx)

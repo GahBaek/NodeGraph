@@ -11,6 +11,21 @@ namespace NodeNetworkSDK.Models.Nodes
     public sealed class SelectNode : INode
     {
         public string Name { get; }
+        public Guid Id { get; }
+
+        private static readonly IReadOnlyDictionary<string, Port> _inputSpec =
+            new Dictionary<string, Port>
+            {
+            };
+
+        private static readonly IReadOnlyDictionary<string, Port> _outputSpec =
+            new Dictionary<string, Port>
+            {
+                ["out"] = new Port(typeof(object))
+            };
+
+        public IReadOnlyDictionary<string, Port> Inputs => _inputSpec;
+        public IReadOnlyDictionary<string, Port> Outputs => _outputSpec;
         private readonly string _selectorKey, _out;
         private readonly Dictionary<string, string> _routes;
 
@@ -20,6 +35,7 @@ namespace NodeNetworkSDK.Models.Nodes
             _selectorKey = selectorKey; 
             _out = outKey;
             _routes = new Dictionary<string, string>();
+            Id = Guid.NewGuid();
             foreach (var (c, k) in routes) _routes[c] = k;
         }
 

@@ -13,6 +13,24 @@ namespace NodeNetworkSDK.Models.Nodes
     public sealed class IfNode : INode
     {
         public string Name { get; }
+        public Guid Id { get; }
+
+        private static readonly IReadOnlyDictionary<string, Port> _inputSpec =
+            new Dictionary<string, Port>
+            {
+                ["cond"] = new Port(typeof(bool)),
+                ["then"] = new Port(typeof(object)),
+                ["else"] = new Port(typeof(object))
+            };
+
+        private static readonly IReadOnlyDictionary<string, Port> _outputSpec =
+            new Dictionary<string, Port>
+            {
+                ["out"] = new Port(typeof(object))
+            };
+
+        public IReadOnlyDictionary<string, Port> Inputs => _inputSpec;
+        public IReadOnlyDictionary<string, Port> Outputs => _outputSpec;
         private readonly string _condKey, _thenKey, _elseKey, _out;
 
         public IfNode(string name, string condKey, string thenKey, string elseKey, string outKey)
@@ -21,7 +39,9 @@ namespace NodeNetworkSDK.Models.Nodes
             _condKey = condKey; 
             _thenKey = thenKey; 
             _elseKey = elseKey; 
-            _out = outKey; }
+            _out = outKey; 
+            Id = Guid.NewGuid();
+        }
 
         public IContext Exec(IContext ctx)
         {

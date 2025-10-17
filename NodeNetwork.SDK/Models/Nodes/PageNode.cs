@@ -13,6 +13,21 @@ namespace NodeNetworkSDK.Models.Nodes
     public class PageNode : INode
     {
         public string Name { get; }
+        public Guid Id { get; }
+
+        private static readonly IReadOnlyDictionary<string, Port> _inputSpec =
+            new Dictionary<string, Port>
+            {
+            };
+
+        private static readonly IReadOnlyDictionary<string, Port> _outputSpec =
+            new Dictionary<string, Port>
+            {
+                ["out"] = new Port(typeof(object))
+            };
+
+        public IReadOnlyDictionary<string, Port> Inputs => _inputSpec;
+        public IReadOnlyDictionary<string, Port> Outputs => _outputSpec;
         private readonly IPage _child;
         private readonly string _outKey;
 
@@ -22,6 +37,7 @@ namespace NodeNetworkSDK.Models.Nodes
             Name = name;
             _child = child;
             _outKey = outKey;
+            Id = Guid.NewGuid();
         }
 
         public IContext Exec(IContext ctx)

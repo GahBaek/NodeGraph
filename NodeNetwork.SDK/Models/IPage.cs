@@ -10,8 +10,11 @@ namespace NodeNetwork.SDK.Models
     {
         string Name { get; }
         string ResultKey { get; }
-        void AddNode(INode node);
+        INode AddNode(INode node);
         IContext Exec(IContext ctx);
-        IEnumerable<INode> EnumerateNodes();
+        // IEnumerable<INode> EnumerateNodes();
+
+        bool Connect(Guid fromNodeId, string fromPortKey, Guid toNodeId, string toPortKey);
+        bool Disconnect(Guid fromNodeId, string fromPortKey, Guid toNodeId, string toPortKey);
     }
 }

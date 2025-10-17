@@ -13,11 +13,27 @@ namespace NodeNetworkSDK.Models
     public sealed class CompareNode : INode
     {
         public string Name { get; }
+        public Guid Id { get; }
+
+        private static readonly IReadOnlyDictionary<string, Port> _inputs =
+            new Dictionary<string, Port>
+            {
+                ["cond"] = new Port(typeof(bool)),
+                ["then"] = new Port(typeof(object)),
+                ["else"] = new Port(typeof(object))
+            };
+
+        private static readonly IReadOnlyDictionary<string, Port> _outputs =
+            new Dictionary<string, Port>
+            {
+                ["out"] = new Port(typeof(object))
+            };
+
         private readonly string _a, _b, _out;
         private readonly Comparator _cmp;
 
         public CompareNode(string name, string aKey, string bKey, string outKey, Comparator cmp)
-        { Name = name; _a = aKey; _b = bKey; _out = outKey; _cmp = cmp; }
+        { Name = name; _a = aKey; _b = bKey; _out = outKey; _cmp = cmp; Id = Guid.NewGuid();  }
 
         public IContext Exec(IContext ctx)
         {

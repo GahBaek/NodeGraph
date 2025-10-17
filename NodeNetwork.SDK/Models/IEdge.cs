@@ -8,11 +8,9 @@ namespace NodeNetwork.SDK.Models
 {
     public interface IEdge
     {
-        Guid Id { get; }
-        string Name { get; }              
-        IReadOnlyList<string> Inputs { get; }  
-        IReadOnlyList<string> Outputs { get; } 
-
-        IContext Exec(IContext ctx);
+        Guid FromNodeId { get; }
+        string FromPortKey { get; }
+        Guid ToNodeId { get; }
+        string ToPortKey { get; }
     }
 }
