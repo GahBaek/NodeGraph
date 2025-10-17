@@ -1,5 +1,4 @@
 ﻿using NodeNetwork.SDK.Models;
-using NodeNetworkSDK.Models.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeNetworkSDK.Models
+namespace NodeNetworkSDK.Models.Nodes
 {
     public enum Comparator { Lt, Le, Gt, Ge, Eq, Ne }
     public sealed class CompareNode : INode
@@ -15,19 +14,19 @@ namespace NodeNetworkSDK.Models
         public string Name { get; }
         public Guid Id { get; }
 
-        private static readonly IReadOnlyDictionary<string, Port> _inputs =
+        private static readonly IReadOnlyDictionary<string, Port> _inputSpec =
             new Dictionary<string, Port>
             {
-                ["cond"] = new Port(typeof(bool)),
-                ["then"] = new Port(typeof(object)),
-                ["else"] = new Port(typeof(object))
             };
 
-        private static readonly IReadOnlyDictionary<string, Port> _outputs =
+        private static readonly IReadOnlyDictionary<string, Port> _outputSpec =
             new Dictionary<string, Port>
             {
                 ["out"] = new Port(typeof(object))
             };
+
+        public IReadOnlyDictionary<string, Port> Inputs => _inputSpec;
+        public IReadOnlyDictionary<string, Port> Outputs => _outputSpec;
 
         private readonly string _a, _b, _out;
         private readonly Comparator _cmp;

@@ -30,7 +30,11 @@ namespace NodeNetworkSDK.Models
         public IContext Exec(IContext ctx)
         {
             foreach (var n in _nodes.Values)
+            {
                 ctx = n.Exec(ctx);
+                Console.WriteLine(n.Name);
+            }
+                
 
             if (ctx.TryGet<object>(ResultKey, out var res))
                 ctx = ctx.SetResult(res);
@@ -56,6 +60,7 @@ namespace NodeNetworkSDK.Models
 
         public bool Disconnect(Guid fromId, string fromPort, Guid toId, string toPort)
             => _edges.Remove(new Edge(fromId, fromPort, toId, toPort));
+
         private static bool PortExistsAndMatches(INode node, string portKey, Direction dir)
         {
             if (dir == Direction.Out)

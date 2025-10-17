@@ -12,9 +12,8 @@ namespace NodeNetworkSDK.Models.Nodes
     {
         Guid Id { get; }
         string Name { get; }
-        private static readonly IReadOnlyDictionary<string, Port> _inputSpec;
-
-        private static readonly IReadOnlyDictionary<string, Port> _outputSpec;
+        public IReadOnlyDictionary<string, Port> Inputs { get; }
+        public IReadOnlyDictionary<string, Port> Outputs { get; }
         IContext Exec(IContext ctx);
     }
 }

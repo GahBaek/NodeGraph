@@ -1,5 +1,4 @@
 ﻿using NodeNetwork.SDK.Models;
-using NodeNetworkSDK.Models;
 using NodeNetworkSDK.Models.Nodes;
 using System;
 using System.Collections.Generic;
