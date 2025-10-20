@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NodeNetworkSDK.Models.Nodes;
+using NodeNetworkSDK.Models.Values;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +11,11 @@ namespace NodeNetwork.SDK.Models
     // data / 실행 상태
     public interface IContext
     {
-        // out 키워드를 사용한 매개변수는 무조건 함수 내부에서 값을 세팅해줘야한다.
-        bool TryGet<T>(string key, out T value);
-
-        // 현재 context 를 변경하지 않고 새 레이어로 덧씌운 새 context를 반환.
-        IContext Set<T>(string key, T value);
-        T Get<T>(string key);
-        IContext SetResult<T>(T value);
-        bool TryGetResult<T>(out T value);
-        bool TryGet(string key, out object? value);
-
+        void SetInput(NodeHandle node, string inputName, IValue value);
+        public void SetOutput(Guid id, string outputName, IValue value);
+        void ClearInput(NodeHandle node, string inputName);
+        bool TryGetInput(NodeHandle node, string inputName, out IValue value);
+        bool TryGetOutput(NodeHandle node, string outputName, out IValue value);
+        void ClearAll();
     }
 }

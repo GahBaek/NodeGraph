@@ -11,7 +11,7 @@ namespace NodeNetworkSDK.Models.Nodes
     // 연산 로직
     public interface INode
     {
-        Guid Id { get; }
+        public Guid Id { get; }
         string Name { get; }
         NodeMeta Meta { get; }
         public IReadOnlyDictionary<string, IValue> Execute(IReadOnlyDictionary<string, IValue> inputs);

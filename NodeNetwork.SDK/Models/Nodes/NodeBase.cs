@@ -12,7 +12,7 @@ namespace NodeNetworkSDK.Models.Nodes
     public readonly record struct NodeHandle(Guid Value);
     public abstract class NodeBase : INode
     {
-        public Guid Id = Guid.NewGuid();
+        public Guid Id { get; } = Guid.NewGuid();
 
         public string Name { get; }
 

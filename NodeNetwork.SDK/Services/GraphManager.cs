@@ -11,7 +11,8 @@ namespace NodeNetworkSDK.Services
 {
     public sealed class GraphManager
     {
-        private sealed class Graph { 
+        private sealed class Graph
+        {
             public string Name { get; }
             public Graph(string name) { Name = name; }
             public readonly Dictionary<Guid, INode> Nodes = new();
@@ -22,26 +23,29 @@ namespace NodeNetworkSDK.Services
 
         private readonly Dictionary<Guid, Graph> _graphs = new();
 
-        public GraphId CreateGraph(string name) { 
-            var g  = new Graph(name);
+        public GraphId CreateGraph(string name)
+        {
+            var g = new Graph(name);
             var id = new GraphId(Guid.NewGuid());
 
             _graphs[id.Value] = g;
             return id;
         }
         // GraphId 를 이용해 graph getter
-        private Graph G(GraphId id) 
+        private Graph G(GraphId id)
             => _graphs.TryGetValue(id.Value, out var g) ? g : throw new KeyNotFoundException("Graph not found");
 
         // reflection 기반 노드 생성
-        public NodeHandle AddNode(GraphId gid, string nodeClassName, string name) {
+        public NodeHandle AddNode(GraphId gid, string nodeClassName, string name)
+        {
             var g = G(gid);
             // node 이름을 통해 node type 반환
             var t = ResolveNodeType(nodeClassName);
+            // instance 생성자 중 public, 비공개 모두에서 string 하나를 받는 생성자를 찾는다는 의미
             var ctor = t.GetConstructor(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance, binder: null, new[] { typeof(string) }, modifiers: null)
                 ?? throw new MissingMethodException($"{t.FullName} needs a (string) constructor.");
 
-            var node = (INode)(ctor.Invoke(new object[] { name }) 
+            var node = (INode)(ctor.Invoke(new object[] { name })
                 ?? throw new InvalidOperationException("Ctor returned null"));
 
             g.Nodes[node.Id] = node;
@@ -49,14 +53,22 @@ namespace NodeNetworkSDK.Services
         }
 
         // 어떤 node 인지 return 하는 메소드
-        private static Type ResolveNodeType(string className) {
-            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies()) { 
+        private static Type ResolveNodeType(string className)
+        {
+            // [AppDomain]
+            // .NET 런타임 안에서 어셈블리들이 로드되어 실행되는 격리된 실행 영역을 가리킨다.
+            // 여러 가지 런타임 상태가 이 경계 안에 묶여 있다.
+
+            // 현재 앱 도메인에 로드된 assembly들을 열거한다.
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
                 var t = asm.GetType(className, throwOnError: false, ignoreCase: false);
                 if (IsValidNodeType(t))
                     return t;
             }
 
-            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies()) {
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
                 var t = asm.GetTypes().FirstOrDefault(x => x.Name == className && IsValidNodeType(x));
                 if (t != null)
                     return t;
@@ -65,32 +77,32 @@ namespace NodeNetworkSDK.Services
             throw new TypeLoadException($"Node type '{className}' not found or invalid.");
         }
 
-        private static bool IsValidNodeType(Type? t) => t != null && typeof(INode).IsAssignableFrom(t);
+        private static bool IsValidNodeType(Type? t)
+            => t != null && typeof(INode).IsAssignableFrom(t) && !t.IsAbstract;
 
         // node 의 meta getter
         public NodeMeta GetNodeMeta(GraphId gid, NodeHandle node) => G(gid).Nodes[node.Value].Meta;
 
-        public void SetInput(IContext ctx, NodeHandle node, string inputName, IValue value, GraphId gid) {
-            var g = G(gid);
-            var meta = g.Nodes[node.Value].Meta;
-            var spec = meta.Inputs.FirstOrDefault(p => p.Name == inputName)
-                ?? throw new ArgumentException($"No such input '{inputName}'");
-
-            if(!spec.Type.IsAssignableFrom(value.Type))
+        public void SetInput(IContext ctx, NodeHandle node, string inputName, IValue value, GraphId gid)
+        {
+            var meta = GetNodeMeta(gid, node);
+            var spec = meta.Inputs.FirstOrDefault(i => i.Name == inputName)
+                       ?? throw new ArgumentException($"No such input '{inputName}'");
+            if (!spec.Type.IsAssignableFrom(value.Type))
                 throw new ArgumentException($"Type mismatch for '{inputName}' (need {spec.Type.Id}, got {value.Type.Id})");
-
-            g.Literals[(node.Value, inputName)] = value;
+            ctx.SetInput(node, inputName, value);
         }
 
         // node 간 연결 관리
-        public bool Connect(GraphId gid, NodeHandle from, string fromOutput, NodeHandle to, string toInput) {
+        public bool Connect(GraphId gid, NodeHandle from, string fromOutput, NodeHandle to, string toInput)
+        {
             var g = G(gid);
-            if(!g.Nodes.TryGetValue(from.Value, out var src) || !g.Nodes.TryGetValue(to.Value, out var dst))
+            if (!g.Nodes.TryGetValue(from.Value, out var src) || !g.Nodes.TryGetValue(to.Value, out var dst))
                 return false;
 
             var outSpec = src.Meta.Outputs.FirstOrDefault(p => p.Name == fromOutput);
             var inSpec = dst.Meta.Inputs.FirstOrDefault(p => p.Name == toInput);
-            if(outSpec is null || inSpec is null)
+            if (outSpec is null || inSpec is null)
                 return false;
             if (!inSpec.Type.IsAssignableFrom(outSpec.Type))
                 return false;
@@ -98,11 +110,105 @@ namespace NodeNetworkSDK.Services
             g.Edges.Add((from.Value, fromOutput, to.Value, toInput));
             return true;
         }
+
+
         public bool Disconnect(GraphId gid, NodeHandle from, string fromOutput, NodeHandle to, string toInput) =>
             G(gid).Edges.Remove((from.Value, fromOutput, to.Value, toInput));
 
-        public (bool OK, IEnumerable<string> Errors) Validate(GraphId gid, IContext ctx) { }
+        public (bool OK, IEnumerable<string> Errors) Validate(GraphId gid, IContext ctx)
+        {
+            var g = G(gid);
+            var errs = new List<string>();
 
-        public void Execute(GraphId gid, IContext ctx) { }
+            var indeg = g.Nodes.Keys.ToDictionary(id => id, _ => 0);
+            foreach (var e in g.Edges) indeg[e.To]++;
+            var q = new Queue<Guid>(g.Nodes.Keys.Where(id => indeg[id] == 0));
+            var seen = new List<Guid>();
+            while (q.Count > 0)
+            {
+                var u = q.Dequeue();
+                seen.Add(u);
+                foreach (var v in g.Edges.Where(x => x.From == u).Select(x => x.To))
+                {
+                    indeg[v]--;
+                    if (indeg[v] == 0) q.Enqueue(v);
+                }
+            }
+            if (seen.Count != g.Nodes.Count) errs.Add("Cycle detected");
+
+            foreach (var (id, n) in g.Nodes)
+            {
+                foreach (var p in n.Meta.Inputs.Where(p => p.Required))
+                {
+                    var hasEdge = g.Edges.Any(e => e.To == id && e.In == p.Name);
+
+                    var hasLit = ctx.TryGetInput(new NodeHandle(id), p.Name, out _);
+
+                    if (!hasEdge && !hasLit)
+                        errs.Add($"Missing input: {n.Name}.{p.Name}");
+                }
+            }
+
+            return (!errs.Any(), errs);
+        }
+
+
+        public void Execute(GraphId gid, IContext ctx)
+        {
+            var g = G(gid);
+            if (ctx is not Context c)
+                throw new ArgumentException("Context must be instance of Context class.");
+
+            var (ok, errs) = Validate(gid, ctx);
+            if (!ok)
+            {
+                Console.WriteLine("== Graph validation failed ==");
+                foreach (var e in errs) Console.WriteLine(" - " + e);
+                throw new InvalidOperationException("Graph invalid: " + string.Join("; ", errs));
+            }
+
+
+            // 위상 정렬
+            var indeg = g.Nodes.Keys.ToDictionary(id => id, _ => 0);
+            foreach (var e in g.Edges) indeg[e.To]++;
+            var q = new Queue<Guid>(g.Nodes.Keys.Where(id => indeg[id] == 0));
+            var order = new List<Guid>();
+            while (q.Count > 0)
+            {
+                var u = q.Dequeue(); order.Add(u);
+                foreach (var v in g.Edges.Where(x => x.From == u).Select(x => x.To))
+                { indeg[v]--; if (indeg[v] == 0) q.Enqueue(v); }
+            }
+
+            // 실행
+            var outCache = new Dictionary<(Guid Node, string Out), IValue>();
+            foreach (var id in order)
+            {
+                var node = g.Nodes[id];
+                var inputs = new Dictionary<string, IValue>();
+
+                foreach (var p in node.Meta.Inputs)
+                {
+                    // 1) Context 입력 우선
+                    if (c._inputs.TryGetValue((id, p.Name), out var lit)) { inputs[p.Name] = lit; continue; }
+                    // 2) 엣지에서 상류 출력 사용
+                    var e = g.Edges.FirstOrDefault(x => x.To == id && x.In == p.Name);
+                    if (!e.Equals(default((Guid, string, Guid, string))))
+                    {
+                        if (outCache.TryGetValue((e.From, e.Out), out var val)) { inputs[p.Name] = val; continue; }
+                        throw new InvalidOperationException($"Upstream not ready for {node.Name}.{p.Name}");
+                    }
+                    // 3) 필수면 런타임 에러
+                    if (p.Required) throw new InvalidOperationException($"Missing input at runtime: {node.Name}.{p.Name}");
+                }
+
+                var nodeOut = node.Execute(inputs);
+                foreach (var (k, v) in nodeOut)
+                {
+                    outCache[(id, k)] = v;           // 로컬 캐시
+                    c.SetOutput(id, k, v);           // Context 출력에 기록
+                }
+            }
+        }
     }
 }
