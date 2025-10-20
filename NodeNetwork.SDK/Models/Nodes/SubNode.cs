@@ -1,0 +1,27 @@
+﻿using NodeNetworkSDK.Models.Values;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NodeNetworkSDK.Models.Nodes
+{
+    public class SubNode : NodeBase
+    {
+        private static readonly NodeMeta _meta = new(
+           "Sub",
+           new[] { new ParamSpec("a", NumberType.Instance), new ParamSpec("b", NumberType.Instance) },
+           new[] { new ParamSpec("out", NumberType.Instance, required: false) }
+           );
+
+        public SubNode(string name) : base(name, _meta) { }
+
+        public override IReadOnlyDictionary<string, IValue> Execute(IReadOnlyDictionary<string, IValue> inputs)
+        {
+            var a = Need<NumberValue>(inputs, "a");
+            var b = Need<NumberValue>(inputs, "b");
+            return new Dictionary<string, IValue> { ["out"] = a.Sub(b) };
+        }
+    }
+}

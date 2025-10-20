@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NodeNetworkSDK")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fdabac07bef9bbfd34424e444de4db99a9505b1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5fe0450ffddc64d05e6436cf2a7cd61f55092d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("NodeNetworkSDK")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NodeNetworkSDK")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

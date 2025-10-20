@@ -1,4 +1,5 @@
 ﻿using NodeNetwork.SDK.Models;
+using NodeNetworkSDK.Models.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,7 @@ namespace NodeNetworkSDK.Models.Nodes
     {
         Guid Id { get; }
         string Name { get; }
-        public IReadOnlyDictionary<string, Port> Inputs { get; }
-        public IReadOnlyDictionary<string, Port> Outputs { get; }
-        IContext Exec(IContext ctx);
+        NodeMeta Meta { get; }
+        public IReadOnlyDictionary<string, IValue> Execute(IReadOnlyDictionary<string, IValue> inputs);
     }
 }
