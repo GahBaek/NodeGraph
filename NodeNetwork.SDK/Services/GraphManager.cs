@@ -36,6 +36,8 @@ namespace NodeNetworkSDK.Services
             => _graphs.TryGetValue(id.Value, out var g) ? g : throw new KeyNotFoundException("Graph not found");
 
         // reflection 기반 노드 생성
+        // reflection 은 유연한 동적 구성/발견을 가능하게 한다.
+        // 성능, 안정성 비용이 있다.
         public NodeHandle AddNode(GraphId gid, string nodeClassName, string name)
         {
             var g = G(gid);
