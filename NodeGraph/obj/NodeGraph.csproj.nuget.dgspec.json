@@ -66,29 +66,9 @@
               "target": "Package",
               "version": "[1.21.10.21, )"
             },
-            "DevExpress.Images": {
+            "DevExpress.Wpf.Themes.All": {
               "target": "Package",
-              "version": "[25.1.5, )"
-            },
-            "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black": {
-              "target": "Package",
-              "version": "[20.2.13, )"
-            },
-            "DevExpress.Wpf.Core": {
-              "target": "Package",
-              "version": "[25.1.5, )"
-            },
-            "DevExpress.Wpf.Themes.VS2019Dark": {
-              "target": "Package",
-              "version": "[25.1.5, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[9.0.9, )"
-            },
-            "Microsoft.Extensions.DependencyInjection.Abstractions": {
-              "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[25.1.6, )"
             },
             "Microsoft.Xaml.Behaviors.Wpf": {
               "target": "Package",
@@ -114,11 +94,11 @@
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             },
-            "Microsoft.WindowsDesktop.App": {
+            "Microsoft.WindowsDesktop.App.WPF": {
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -187,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

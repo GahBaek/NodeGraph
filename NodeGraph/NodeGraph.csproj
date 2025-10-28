@@ -8,25 +8,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="ConvMVVM2.WPF" Version="1.21.10.21" />
-    <PackageReference Include="DevExpress.Images" Version="25.1.5" />
-    <PackageReference Include="DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black" Version="20.2.13" />
-    <PackageReference Include="DevExpress.Wpf.Core" Version="25.1.5" />
-    <PackageReference Include="DevExpress.Wpf.Themes.VS2019Dark" Version="25.1.5" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\NodeNetwork.SDK\NodeNetworkSDK.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

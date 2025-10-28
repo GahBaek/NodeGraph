@@ -4,12 +4,12 @@
     "D:\\source\\repos\\NodeNetworkSDK\\NodeNetworkConsole\\NodeNetworkConsole.csproj": {}
   },
   "projects": {
-    "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj": {
+    "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj",
-        "projectName": "NodeNetwork.SDK",
-        "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj",
+        "projectUniqueName": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj",
+        "projectName": "NodeNetworkSDK",
+        "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj",
         "packagesPath": "C:\\Users\\HVS\\.nuget\\packages\\",
         "outputPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\obj\\",
         "projectStyle": "PackageReference",
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -105,8 +105,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj": {
-                "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj"
+              "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj": {
+                "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj"
               }
             }
           }
@@ -142,7 +142,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

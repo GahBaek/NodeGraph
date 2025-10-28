@@ -93,6 +93,8 @@ namespace NodeNetworkSDK.Services
             if (!spec.Type.IsAssignableFrom(value.Type))
                 throw new ArgumentException($"Type mismatch for '{inputName}' (need {spec.Type.Id}, got {value.Type.Id})");
             ctx.SetInput(node, inputName, value);
+            var g = G(gid);
+            g.Literals[(node.Value, inputName)] = value;
         }
 
         // node 간 연결 관리
@@ -144,7 +146,8 @@ namespace NodeNetworkSDK.Services
                 {
                     var hasEdge = g.Edges.Any(e => e.To == id && e.In == p.Name);
 
-                    var hasLit = ctx.TryGetInput(new NodeHandle(id), p.Name, out _);
+                    var hasLit = ctx.TryGetInput(new NodeHandle(id), p.Name, out _)
+                        || g.Literals.ContainsKey((id, p.Name));
 
                     if (!hasEdge && !hasLit)
                         errs.Add($"Missing input: {n.Name}.{p.Name}");
@@ -197,6 +200,7 @@ namespace NodeNetworkSDK.Services
         public void Execute(GraphId gid, IContext ctx)
         {
             var g = G(gid);
+
             if (ctx is not Context c)
                 throw new ArgumentException("Context must be instance of Context class.");
 
@@ -228,13 +232,16 @@ namespace NodeNetworkSDK.Services
                 foreach (var p in node.Meta.Inputs)
                 {
                     if (c._inputs.TryGetValue((id, p.Name), out var lit)) { inputs[p.Name] = lit; continue; }
-                    
+
+                    if (g.Literals.TryGetValue((id, p.Name), out var glit)) { inputs[p.Name] = glit; continue; }
+
                     var e = g.Edges.FirstOrDefault(x => x.To == id && x.In == p.Name);
                     if (!e.Equals(default((Guid, string, Guid, string))))
                     {
                         if (outCache.TryGetValue((e.From, e.Out), out var val)) { inputs[p.Name] = val; continue; }
                         throw new InvalidOperationException($"Upstream not ready for {node.Name}.{p.Name}");
                     }
+
                     if (p.Required) throw new InvalidOperationException($"Missing input at runtime: {node.Name}.{p.Name}");
                 }
 

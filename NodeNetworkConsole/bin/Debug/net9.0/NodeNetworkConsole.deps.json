@@ -8,15 +8,15 @@
     ".NETCoreApp,Version=v9.0": {
       "NodeNetworkConsole/1.0.0": {
         "dependencies": {
-          "NodeNetwork.SDK": "1.0.0"
+          "NodeNetworkSDK": "1.0.0"
         },
         "runtime": {
           "NodeNetworkConsole.dll": {}
         }
       },
-      "NodeNetwork.SDK/1.0.0": {
+      "NodeNetworkSDK/1.0.0": {
         "runtime": {
-          "NodeNetwork.SDK.dll": {
+          "NodeNetworkSDK.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -30,7 +30,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "NodeNetwork.SDK/1.0.0": {
+    "NodeNetworkSDK/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

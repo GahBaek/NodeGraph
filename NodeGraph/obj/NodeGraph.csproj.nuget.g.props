@@ -16,13 +16,9 @@
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.analyzers\3.3.4\buildTransitive\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.analyzers\3.3.4\buildTransitive\Microsoft.CodeAnalysis.Analyzers.props')" />
-    <Import Project="$(NuGetPackageRoot)devexpress.data.desktop\25.1.5\build\net8.0-windows\DevExpress.Data.Desktop.props" Condition="Exists('$(NuGetPackageRoot)devexpress.data.desktop\25.1.5\build\net8.0-windows\DevExpress.Data.Desktop.props')" />
-    <Import Project="$(NuGetPackageRoot)devexpress.wpf.core\25.1.5\build\net8.0-windows\DevExpress.Wpf.Core.props" Condition="Exists('$(NuGetPackageRoot)devexpress.wpf.core\25.1.5\build\net8.0-windows\DevExpress.Wpf.Core.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Xaml_Behaviors_Wpf Condition=" '$(PkgMicrosoft_Xaml_Behaviors_Wpf)' == '' ">C:\Users\HVS\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.135</PkgMicrosoft_Xaml_Behaviors_Wpf>
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\HVS\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.4</PkgMicrosoft_CodeAnalysis_Analyzers>
-    <PkgDevExpress_Data Condition=" '$(PkgDevExpress_Data)' == '' ">C:\Users\HVS\.nuget\packages\devexpress.data\25.1.5</PkgDevExpress_Data>
-    <PkgDevExpress_Wpf_Core Condition=" '$(PkgDevExpress_Wpf_Core)' == '' ">C:\Users\HVS\.nuget\packages\devexpress.wpf.core\25.1.5</PkgDevExpress_Wpf_Core>
   </PropertyGroup>
 </Project>

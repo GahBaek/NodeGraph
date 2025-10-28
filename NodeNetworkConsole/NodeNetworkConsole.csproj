@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NodeNetwork.SDK\NodeNetwork.SDK.csproj" />
+    <ProjectReference Include="..\NodeNetwork.SDK\NodeNetworkSDK.csproj" />
   </ItemGroup>
 
 </Project>

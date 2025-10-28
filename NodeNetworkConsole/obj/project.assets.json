@@ -2,28 +2,28 @@
   "version": 3,
   "targets": {
     "net9.0": {
-      "NodeNetwork.SDK/1.0.0": {
+      "NodeNetworkSDK/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "compile": {
-          "bin/placeholder/NodeNetwork.SDK.dll": {}
+          "bin/placeholder/NodeNetworkSDK.dll": {}
         },
         "runtime": {
-          "bin/placeholder/NodeNetwork.SDK.dll": {}
+          "bin/placeholder/NodeNetworkSDK.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "NodeNetwork.SDK/1.0.0": {
+    "NodeNetworkSDK/1.0.0": {
       "type": "project",
-      "path": "../NodeNetwork.SDK/NodeNetwork.SDK.csproj",
-      "msbuildProject": "../NodeNetwork.SDK/NodeNetwork.SDK.csproj"
+      "path": "../NodeNetwork.SDK/NodeNetworkSDK.csproj",
+      "msbuildProject": "../NodeNetwork.SDK/NodeNetworkSDK.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "NodeNetwork.SDK >= 1.0.0"
+      "NodeNetworkSDK >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -63,8 +63,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj": {
-              "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetwork.SDK.csproj"
+            "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj": {
+              "projectPath": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\NodeNetworkSDK.csproj"
             }
           }
         }
@@ -100,7 +100,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
