@@ -11,7 +11,7 @@ namespace NodeNetworkSDK.Services
 {
     public sealed class GraphManager
     {
-        private sealed class Graph
+        public sealed class Graph
         {
             public string Name { get; }
             public Graph(string name) { Name = name; }
@@ -154,6 +154,45 @@ namespace NodeNetworkSDK.Services
             return (!errs.Any(), errs);
         }
 
+        internal Graph Debug_GetGraphSnapshot(GraphId gid) => G(gid);
+        internal INode Debug_GetNode(GraphId gid, Guid id) => G(gid).Nodes[id];
+
+        internal void Debug_ReassignNodeIds(GraphId gid,
+            Dictionary<Guid, NodeHandle> newlyCreated, Guid[] targetIds)
+        {
+            var g = G(gid);
+            var newIds = newlyCreated.Values.Select(h => h.Value).ToArray();
+            if (newIds.Length != targetIds.Length) throw new InvalidOperationException();
+
+            var map = new Dictionary<Guid, Guid>();
+            for (int i = 0; i < newIds.Length; i++) map[newIds[i]] = targetIds[i];
+
+            var clones = new Dictionary<Guid, INode>();
+            foreach (var (oldId, node) in g.Nodes)
+            {
+                var nid = map.TryGetValue(oldId, out var want) ? want : oldId;
+                clones[nid] = node.WithId(nid);
+            }
+            g.Nodes.Clear();
+            foreach (var kv in clones) g.Nodes[kv.Key] = kv.Value;
+
+            var re = new HashSet<(Guid From, string Out, Guid To, string In)>();
+            foreach (var e in g.Edges)
+            {
+                var from = map.TryGetValue(e.From, out var f2) ? f2 : e.From;
+                var to = map.TryGetValue(e.To, out var t2) ? t2 : e.To;
+                re.Add((from, e.Out, to, e.In));
+            }
+            g.Edges.Clear(); foreach (var e in re) g.Edges.Add(e);
+
+            var rl = new Dictionary<(Guid Node, string Input), IValue>();
+            foreach (var kv in g.Literals)
+            {
+                var node = map.TryGetValue(kv.Key.Node, out var n2) ? n2 : kv.Key.Node;
+                rl[(node, kv.Key.Input)] = kv.Value;
+            }
+            g.Literals.Clear(); foreach (var kv in rl) g.Literals[kv.Key] = kv.Value;
+        }
 
         public void Execute(GraphId gid, IContext ctx)
         {
@@ -169,8 +208,6 @@ namespace NodeNetworkSDK.Services
                 throw new InvalidOperationException("Graph invalid: " + string.Join("; ", errs));
             }
 
-
-            // 위상 정렬
             var indeg = g.Nodes.Keys.ToDictionary(id => id, _ => 0);
             foreach (var e in g.Edges) indeg[e.To]++;
             var q = new Queue<Guid>(g.Nodes.Keys.Where(id => indeg[id] == 0));
@@ -182,7 +219,6 @@ namespace NodeNetworkSDK.Services
                 { indeg[v]--; if (indeg[v] == 0) q.Enqueue(v); }
             }
 
-            // 실행
             var outCache = new Dictionary<(Guid Node, string Out), IValue>();
             foreach (var id in order)
             {
@@ -191,24 +227,22 @@ namespace NodeNetworkSDK.Services
 
                 foreach (var p in node.Meta.Inputs)
                 {
-                    // 1) Context 입력 우선
                     if (c._inputs.TryGetValue((id, p.Name), out var lit)) { inputs[p.Name] = lit; continue; }
-                    // 2) 엣지에서 상류 출력 사용
+                    
                     var e = g.Edges.FirstOrDefault(x => x.To == id && x.In == p.Name);
                     if (!e.Equals(default((Guid, string, Guid, string))))
                     {
                         if (outCache.TryGetValue((e.From, e.Out), out var val)) { inputs[p.Name] = val; continue; }
                         throw new InvalidOperationException($"Upstream not ready for {node.Name}.{p.Name}");
                     }
-                    // 3) 필수면 런타임 에러
                     if (p.Required) throw new InvalidOperationException($"Missing input at runtime: {node.Name}.{p.Name}");
                 }
 
                 var nodeOut = node.Execute(inputs);
                 foreach (var (k, v) in nodeOut)
                 {
-                    outCache[(id, k)] = v;           // 로컬 캐시
-                    c.SetOutput(id, k, v);           // Context 출력에 기록
+                    outCache[(id, k)] = v;
+                    c.SetOutput(id, k, v);
                 }
             }
         }

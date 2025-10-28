@@ -17,10 +17,15 @@ namespace NodeNetworkSDK.Models.Values
     public sealed class NumberValue : IValue
     {
         public IDataType Type => NumberType.Instance;
-        private readonly decimal _v;
-        private NumberValue(decimal v) { _v = v; }
+        public decimal _v;
+        public NumberValue(decimal v) { _v = v; }
+        public NumberValue(double v) { _v = (decimal)v; }
 
-        public static NumberValue Of(int v) => new(v);
+        public static NumberValue Of(int v)
+        {
+            return new((decimal)v);
+        }
+
         public static NumberValue Of(double v) => new((decimal)v);
         public static NumberValue Of(decimal v) => new(v);
 

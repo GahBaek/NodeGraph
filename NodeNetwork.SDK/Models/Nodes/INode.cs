@@ -15,5 +15,6 @@ namespace NodeNetworkSDK.Models.Nodes
         string Name { get; }
         NodeMeta Meta { get; }
         public IReadOnlyDictionary<string, IValue> Execute(IReadOnlyDictionary<string, IValue> inputs);
+        public INode WithId(Guid id);
     }
 }

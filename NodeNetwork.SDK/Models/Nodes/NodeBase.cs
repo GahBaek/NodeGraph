@@ -12,7 +12,7 @@ namespace NodeNetworkSDK.Models.Nodes
     public readonly record struct NodeHandle(Guid Value);
     public abstract class NodeBase : INode
     {
-        public Guid Id { get; } = Guid.NewGuid();
+        public Guid Id { get; protected set; } = Guid.NewGuid();
 
         public string Name { get; }
 
@@ -28,5 +28,6 @@ namespace NodeNetworkSDK.Models.Nodes
         }
 
         public abstract IReadOnlyDictionary<string, IValue> Execute(IReadOnlyDictionary<string, IValue> inputs);
+        public virtual INode WithId(Guid id) { Id = id; return this; }
     }
 }

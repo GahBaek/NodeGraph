@@ -15,8 +15,8 @@ namespace NodeNetworkSDK.Models.Values
     {
         public IDataType Type => BoolType.Instance;
 
-        private readonly bool _v;
-        private BoolValue(bool v) { _v = v; }
+        public bool _v;
+        public BoolValue(bool v) { _v = v; }
 
         public bool Value => _v;
 
