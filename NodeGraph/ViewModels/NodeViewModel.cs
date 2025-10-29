@@ -15,5 +15,15 @@ namespace NodeGraph.ViewModels
         public Guid Id { get; }
         public string Name { get; }
         public NodeMeta Meta { get; }
+
+        public NodeViewModel(Guid nodeGuid, string nodeId, string instanceName)
+        {
+            Id = nodeGuid;
+            Name = nodeId;
+            // 
+
+        }
+
+
     }
 }
