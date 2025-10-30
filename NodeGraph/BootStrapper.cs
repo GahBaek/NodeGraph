@@ -15,13 +15,12 @@ namespace ShowRoomDisplay
     {
         protected override void OnStartUp(IServiceContainer container)
         {
-
             var reg = new NodeRegistry();
-            NodeRegistry.Register(id: "Sub", meta: SubNode._meta, factory: () => new SubNode());
-            NodeRegistry.Register(id: "Sum", meta: SumNode._meta, factory: () => new SumNode());
-            NodeRegistry.Register(id: "Mul", meta: MulNode._meta, factory: () => new MulNode());
-            NodeRegistry.Register(id: "Div", meta: DivNode._meta, factory: () => new DivNode());
-            NodeRegistry.Register(id: "If", meta: IfNode._meta, factory: () => new IfNode());
+            reg.Register(id: "Sub", meta: SubNode._meta, factory: () => new SubNode());
+            reg.Register(id: "Sum", meta: SumNode._meta, factory: () => new SumNode());
+            reg.Register(id: "Mul", meta: MulNode._meta, factory: () => new MulNode());
+            reg.Register(id: "Div", meta: DivNode._meta, factory: () => new DivNode());
+            reg.Register(id: "If", meta: IfNode._meta, factory: () => new IfNode());
         }
 
         protected override void RegionMapping(IRegionManager layerManager)
@@ -42,6 +41,8 @@ namespace ShowRoomDisplay
 
             // ViewModel
             serviceCollection.AddSingleton<GraphViewModel>();
+            serviceCollection.AddSingleton<NodeViewModel>();
+            serviceCollection.AddSingleton<PortViewModel>();
             
         }
 

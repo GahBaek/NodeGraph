@@ -13,18 +13,17 @@ namespace NodeGraph.Services
         public sealed record Entry(string Id, NodeMeta Meta, Func<INode> Factory);
         private static readonly Dictionary<string, Entry> _entries = new();
 
-        public static void Register(string id, NodeMeta meta, Func<INode> factory)
+        public void Register(string id, NodeMeta meta, Func<INode> factory)
         {
             _entries[id] = new Entry(id, meta, factory);
-        
         }
 
-        public static bool TryGet(string id, out Entry entry)
+        public bool TryGet(string id, out Entry entry)
         {
             return _entries.TryGetValue(id, out entry);
-
         }
-        public static IEnumerable<Entry> All()
+
+        public IEnumerable<Entry> All()
         {
             return _entries.Values;
         }
@@ -39,7 +38,6 @@ namespace NodeGraph.Services
             {
                 throw new KeyNotFoundException(id);
             }
-             
         }
     }
 

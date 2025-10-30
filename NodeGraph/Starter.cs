@@ -17,16 +17,12 @@ namespace ShowRoomDisplay
         [STAThread]
         public static void Main(string[] args)
         {
-
             var host = ConvMVVM2Host.CreateHost<BootStrapper,Application>(args, "App");
             host.AddWPFDialogService()
                 .Build()
                 .ShutdownMode(System.Windows.ShutdownMode.OnMainWindowClose)
-                .Popup("MainWindowView", dialog: false)
+                .Popup("MainWindow", dialog: false)
                 .RunApp();
-
-
-            
         }
         #endregion
     }
