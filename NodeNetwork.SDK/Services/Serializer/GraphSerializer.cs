@@ -63,7 +63,7 @@ namespace NodeNetworkSDK.Services.Serializer
         public GraphId Deserialize(string json)
         {
             var dto = JsonSerializer.Deserialize<GraphDto>(json, _json)
-                      ?? throw new InvalidOperationException("Invalid json");
+                      ?? throw new InvalidOperationException("Json 형식이 올바르지 않습니다.");
             if (dto.SchemaVersion != SchemaVersion)
                 throw new NotSupportedException($"Schema {dto.SchemaVersion} != {SchemaVersion}");
 

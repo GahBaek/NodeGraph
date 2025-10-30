@@ -17,5 +17,6 @@ namespace NodeNetwork.SDK.Models
         bool TryGetInput(NodeHandle node, string inputName, out IValue value);
         bool TryGetOutput(NodeHandle node, string outputName, out IValue value);
         void ClearAll();
+        void Log(string message);
     }
 }

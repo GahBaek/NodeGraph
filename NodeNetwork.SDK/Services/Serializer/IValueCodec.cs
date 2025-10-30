@@ -79,14 +79,11 @@ namespace NodeNetworkSDK.Services.Serializer
 
         public bool TryGet(string typeId, out IValueCodec? c)
         {
-            // 1) 정확히 일치
             if (_byId.TryGetValue(typeId, out c)) return true;
 
-            // 2) 별칭 매핑
             if (_alias.TryGetValue(typeId, out var canonical) &&
                 _byId.TryGetValue(canonical, out c)) return true;
 
-            // 3) 네임스페이스 접두어 제거 후 재시도 (ex: "core.number" -> "number")
             var idx = typeId.LastIndexOf('.');
             if (idx >= 0)
             {

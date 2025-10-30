@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NodeNetworkSDK.Models.Nodes
 {
     public readonly record struct GraphId(Guid Value);
-    // 노드 If 를 의미 있는 타입으로 감싼 핸들
+    // 노드 Id 를 의미 있는 타입으로 감싼 핸들
     public readonly record struct NodeHandle(Guid Value);
     public abstract class NodeBase : INode
     {

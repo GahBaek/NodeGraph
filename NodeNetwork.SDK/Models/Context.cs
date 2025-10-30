@@ -49,5 +49,10 @@ namespace NodeNetwork.SDK.Models
         {
             return _outputs.TryGetValue((node.Value, outputName), out value!);
         }
+
+        public void Log(string message)
+        {
+            Console.WriteLine("log: " + message);
+        }
     }
 }

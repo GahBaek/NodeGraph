@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace NodeNetworkSDK.Models.Nodes
 {
-    internal sealed class IfNode : NodeBase
-    {
-        private static readonly NodeMeta _meta = new(
+    public class IfNode : NodeBase
+    { 
+        // Metadata
+        public static readonly NodeMeta _meta = new(
             "If",
             ins: new[]
             {
@@ -21,7 +22,7 @@ namespace NodeNetworkSDK.Models.Nodes
         );
 
         public IfNode(string name) : base(name, _meta) { }
-
+        public IfNode() : base(_meta.Display, _meta) { }
         public override IReadOnlyDictionary<string, IValue> Execute(IReadOnlyDictionary<string, IValue> inputs)
         {
             var cond = Need<BoolValue>(inputs, "cond");

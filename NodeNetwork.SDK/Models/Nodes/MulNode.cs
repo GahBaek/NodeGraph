@@ -9,13 +9,15 @@ namespace NodeNetworkSDK.Models.Nodes
 {
     public class MulNode : NodeBase
     {
-        private static readonly NodeMeta _meta = new(
+        // Metadata
+        public static readonly NodeMeta _meta = new(
             "Mul",
             new[] {new ParamSpec("a", NumberType.Instance), new ParamSpec("b", NumberType.Instance) },
             new[] { new ParamSpec("out", NumberType.Instance, required :false) }
             );
 
         public MulNode(string name) : base(name, _meta) { }
+        public MulNode() : base(_meta.Display, _meta) { }
 
         public override IReadOnlyDictionary<string, IValue> Execute(IReadOnlyDictionary<string, IValue> inputs) {
             var a = Need<NumberValue>(inputs, "a");

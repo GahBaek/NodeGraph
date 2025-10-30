@@ -1,6 +1,7 @@
 ﻿using NodeNetwork.SDK.Models;
 using NodeNetworkSDK.Models.Nodes;
 using NodeNetworkSDK.Models.Values;
+using System.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace NodeNetworkSDK.Services
             public Graph(string name) { Name = name; }
             public readonly Dictionary<Guid, INode> Nodes = new();
             public readonly HashSet<(Guid From, string Out, Guid To, string In)> Edges = new();
-            // Edge 로 연결되지 않은 입력 포트에 꽂는 상수 값들
+            // Edge 로 연결되지 않은 입력 포트에 꽂는 상수 값들 (Literal 은 시각적인 요소가 아닌 확정적인 요소)
             public readonly Dictionary<(Guid Node, string Input), IValue> Literals = new();
         }
 
@@ -35,6 +36,8 @@ namespace NodeNetworkSDK.Services
         private Graph G(GraphId id)
             => _graphs.TryGetValue(id.Value, out var g) ? g : throw new KeyNotFoundException("Graph not found");
 
+        // Activator.CreateInstance도 가능. <- private class 는 X
+
         // reflection 기반 노드 생성
         // reflection 은 유연한 동적 구성/발견을 가능하게 한다.
         // 성능, 안정성 비용이 있다.
@@ -43,12 +46,14 @@ namespace NodeNetworkSDK.Services
             var g = G(gid);
             // node 이름을 통해 node type 반환
             var t = ResolveNodeType(nodeClassName);
+
             // instance 생성자 중 public, 비공개 모두에서 string 하나를 받는 생성자를 찾는다는 의미
-            var ctor = t.GetConstructor(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance, binder: null, new[] { typeof(string) }, modifiers: null)
-                ?? throw new MissingMethodException($"{t.FullName} needs a (string) constructor.");
+            var ctor = t.GetConstructor(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, 
+                binder: null, new[] { typeof(string) }, modifiers: null)
+                ?? throw new MissingMethodException($"{t.FullName} 에는 string 생성자가 없습니다.");
 
             var node = (INode)(ctor.Invoke(new object[] { name })
-                ?? throw new InvalidOperationException("Ctor returned null"));
+                ?? throw new InvalidOperationException("Ctor 가 null을 반환했습니다."));
 
             g.Nodes[node.Id] = node;
             return new NodeHandle(node.Id);
@@ -76,7 +81,21 @@ namespace NodeNetworkSDK.Services
                     return t;
             }
 
-            throw new TypeLoadException($"Node type '{className}' not found or invalid.");
+            throw new TypeLoadException($"'{className}'노드를 찾을 수 없습니다.");
+        }
+
+        public IEnumerable<(Guid NodeId, string NodeType, string Display)> ListNodes(GraphId gid)
+        {
+            var g = G(gid);
+            foreach (var (id, node) in g.Nodes)
+            {
+                yield return (id, node.GetType().FullName ?? node.GetType().Name, node.Name);
+            }
+        }
+
+        public IEnumerable<(Guid From, string Out, Guid To, string In)> ListEdges(GraphId gid)
+        {
+            return G(gid).Edges;
         }
 
         private static bool IsValidNodeType(Type? t)
@@ -106,6 +125,7 @@ namespace NodeNetworkSDK.Services
 
             var outSpec = src.Meta.Outputs.FirstOrDefault(p => p.Name == fromOutput);
             var inSpec = dst.Meta.Inputs.FirstOrDefault(p => p.Name == toInput);
+
             if (outSpec is null || inSpec is null)
                 return false;
             if (!inSpec.Type.IsAssignableFrom(outSpec.Type))
@@ -138,7 +158,7 @@ namespace NodeNetworkSDK.Services
                     if (indeg[v] == 0) q.Enqueue(v);
                 }
             }
-            if (seen.Count != g.Nodes.Count) errs.Add("Cycle detected");
+            if (seen.Count != g.Nodes.Count) errs.Add("순환 그래프가 형성되었습니다.");
 
             foreach (var (id, n) in g.Nodes)
             {
@@ -186,7 +206,8 @@ namespace NodeNetworkSDK.Services
                 var to = map.TryGetValue(e.To, out var t2) ? t2 : e.To;
                 re.Add((from, e.Out, to, e.In));
             }
-            g.Edges.Clear(); foreach (var e in re) g.Edges.Add(e);
+            g.Edges.Clear();
+            foreach (var e in re) g.Edges.Add(e);
 
             var rl = new Dictionary<(Guid Node, string Input), IValue>();
             foreach (var kv in g.Literals)
@@ -194,7 +215,8 @@ namespace NodeNetworkSDK.Services
                 var node = map.TryGetValue(kv.Key.Node, out var n2) ? n2 : kv.Key.Node;
                 rl[(node, kv.Key.Input)] = kv.Value;
             }
-            g.Literals.Clear(); foreach (var kv in rl) g.Literals[kv.Key] = kv.Value;
+            g.Literals.Clear();
+            foreach (var kv in rl) g.Literals[kv.Key] = kv.Value;
         }
 
         public void Execute(GraphId gid, IContext ctx)
@@ -207,20 +229,28 @@ namespace NodeNetworkSDK.Services
             var (ok, errs) = Validate(gid, ctx);
             if (!ok)
             {
-                Console.WriteLine("== Graph validation failed ==");
-                foreach (var e in errs) Console.WriteLine(" - " + e);
-                throw new InvalidOperationException("Graph invalid: " + string.Join("; ", errs));
+                ctx.Log("== Graph를 생성할 수 없습니다. ==");
+                foreach (var e in errs)
+                    ctx.Log(" - " + e);
+                ctx.Log("Graph invalid: " + string.Join("; ", errs));
+                throw new InvalidOperationException();
             }
 
             var indeg = g.Nodes.Keys.ToDictionary(id => id, _ => 0);
-            foreach (var e in g.Edges) indeg[e.To]++;
+            foreach (var e in g.Edges) 
+                indeg[e.To]++;
             var q = new Queue<Guid>(g.Nodes.Keys.Where(id => indeg[id] == 0));
             var order = new List<Guid>();
             while (q.Count > 0)
             {
-                var u = q.Dequeue(); order.Add(u);
+                var u = q.Dequeue();
+                order.Add(u);
                 foreach (var v in g.Edges.Where(x => x.From == u).Select(x => x.To))
-                { indeg[v]--; if (indeg[v] == 0) q.Enqueue(v); }
+                { 
+                    indeg[v]--; 
+                    if (indeg[v] == 0)
+                        q.Enqueue(v);
+                }
             }
 
             var outCache = new Dictionary<(Guid Node, string Out), IValue>();
@@ -239,10 +269,11 @@ namespace NodeNetworkSDK.Services
                     if (!e.Equals(default((Guid, string, Guid, string))))
                     {
                         if (outCache.TryGetValue((e.From, e.Out), out var val)) { inputs[p.Name] = val; continue; }
-                        throw new InvalidOperationException($"Upstream not ready for {node.Name}.{p.Name}");
+                        ctx.Log($"Upstream not ready for {node.Name}.{p.Name}");
                     }
 
-                    if (p.Required) throw new InvalidOperationException($"Missing input at runtime: {node.Name}.{p.Name}");
+                    if (p.Required) 
+                        ctx.Log($"Missing input at runtime: {node.Name}.{p.Name}");
                 }
 
                 var nodeOut = node.Execute(inputs);
