@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace NodeNetworkSDK.Models.Nodes
 {
+    // 개별 Port 의 사양 기술.
     public sealed class ParamSpec
     {
         public string Name { get; }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NodeNetworkConsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b908c85557dbf9d560a1fcf0641d429d0bf9e241")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5020a56cf404e484cbe9a8096704646caba9f0ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("NodeNetworkConsole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NodeNetworkConsole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "D:\\source\\repos\\NodeNetworkSDK\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\services\\graphmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|solutionrelative:nodenetwork.sdk\\services\\graphmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|d:\\source\\repos\\nodenetworksdk\\nodegraph\\nodegraph.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|solutionrelative:nodegraph\\nodegraph.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\serializer\\ivaluecodec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|solutionrelative:nodenetwork.sdk\\models\\serializer\\ivaluecodec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|d:\\source\\repos\\nodenetworksdk\\nodegraph\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|solutionrelative:nodegraph\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\serializer\\igraphserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|solutionrelative:nodenetwork.sdk\\models\\serializer\\igraphserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|d:\\source\\repos\\nodenetworksdk\\nodegraph\\starter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|solutionrelative:nodegraph\\starter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetwork.sdk\\models\\serializer\\graphserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{030715FD-6687-4F30-B2F4-87D2998C0507}|NodeNetwork.SDK\\NodeNetworkSDK.csproj|solutionrelative:nodenetwork.sdk\\models\\serializer\\graphserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF84C3B2-E895-45C0-A544-4AFEB34F209B}|NodeNetworkConsole\\NodeNetworkConsole.csproj|d:\\source\\repos\\nodenetworksdk\\nodenetworkconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF84C3B2-E895-45C0-A544-4AFEB34F209B}|NodeNetworkConsole\\NodeNetworkConsole.csproj|solutionrelative:nodenetworkconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|d:\\source\\repos\\nodenetworksdk\\nodegraph\\bootstrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EEDB2E1-D541-4227-BBA6-2FA628DB473A}|NodeGraph\\NodeGraph.csproj|solutionrelative:nodegraph\\bootstrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 165,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GraphManager.cs",
-              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Services\\GraphManager.cs",
-              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Services\\GraphManager.cs",
-              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Services\\GraphManager.cs",
-              "RelativeToolTip": "NodeNetwork.SDK\\Services\\GraphManager.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAADwvxMAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T05:58:56.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IValueCodec.cs",
-              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Serializer\\IValueCodec.cs",
-              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\Serializer\\IValueCodec.cs",
-              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Serializer\\IValueCodec.cs",
-              "RelativeToolTip": "NodeNetwork.SDK\\Models\\Serializer\\IValueCodec.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T05:58:27.806Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IGraphSerializer.cs",
-              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Serializer\\IGraphSerializer.cs",
-              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\Serializer\\IGraphSerializer.cs",
-              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Serializer\\IGraphSerializer.cs",
-              "RelativeToolTip": "NodeNetwork.SDK\\Models\\Serializer\\IGraphSerializer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Title": "Starter.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\Starter.cs",
+              "RelativeDocumentMoniker": "NodeGraph\\Starter.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\Starter.cs",
+              "RelativeToolTip": "NodeGraph\\Starter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T05:58:27.203Z",
+              "WhenOpened": "2025-10-30T23:49:07.208Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NodeGraph",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\NodeGraph.csproj",
+              "RelativeDocumentMoniker": "NodeGraph\\NodeGraph.csproj",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\NodeGraph.csproj",
+              "RelativeToolTip": "NodeGraph\\NodeGraph.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-30T23:56:10.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GraphSerializer.cs",
-              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Serializer\\GraphSerializer.cs",
-              "RelativeDocumentMoniker": "NodeNetwork.SDK\\Models\\Serializer\\GraphSerializer.cs",
-              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetwork.SDK\\Models\\Serializer\\GraphSerializer.cs",
-              "RelativeToolTip": "NodeNetwork.SDK\\Models\\Serializer\\GraphSerializer.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAACsAAAAWAAAAAAAAAA==",
+              "Title": "BootStrapper.cs",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\BootStrapper.cs",
+              "RelativeDocumentMoniker": "NodeGraph\\BootStrapper.cs",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\BootStrapper.cs",
+              "RelativeToolTip": "NodeGraph\\BootStrapper.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T05:52:59.977Z",
+              "WhenOpened": "2025-10-30T23:52:52.109Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetworkConsole\\Program.cs",
-              "RelativeDocumentMoniker": "NodeNetworkConsole\\Program.cs",
-              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeNetworkConsole\\Program.cs",
-              "RelativeToolTip": "NodeNetworkConsole\\Program.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAQwF0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T05:37:31.119Z",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "NodeGraph\\Views\\MainWindow.xaml",
+              "ToolTip": "D:\\source\\repos\\NodeNetworkSDK\\NodeGraph\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "NodeGraph\\Views\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-30T23:48:37.935Z",
               "EditorCaption": ""
             }
           ]

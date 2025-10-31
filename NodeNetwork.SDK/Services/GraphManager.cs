@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NodeNetworkSDK.CustomException;
 
 namespace NodeNetworkSDK.Services
 {
@@ -34,7 +35,7 @@ namespace NodeNetworkSDK.Services
         }
         // GraphId 를 이용해 graph getter
         private Graph G(GraphId id)
-            => _graphs.TryGetValue(id.Value, out var g) ? g : throw new KeyNotFoundException("Graph not found");
+            => _graphs.TryGetValue(id.Value, out var g) ? g : throw new InvalidKeyException("GraphManager_G");
 
         // Activator.CreateInstance도 가능. <- private class 는 X
 
@@ -50,10 +51,10 @@ namespace NodeNetworkSDK.Services
             // instance 생성자 중 public, 비공개 모두에서 string 하나를 받는 생성자를 찾는다는 의미
             var ctor = t.GetConstructor(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, 
                 binder: null, new[] { typeof(string) }, modifiers: null)
-                ?? throw new MissingMethodException($"{t.FullName} 에는 string 생성자가 없습니다.");
+                ?? throw new InvalidValueException(t.FullName + "에는 string 생성자가 없습니다.", "GraphManager_AddNode", ErrorCode.InvalidValue);
 
             var node = (INode)(ctor.Invoke(new object[] { name })
-                ?? throw new InvalidOperationException("Ctor 가 null을 반환했습니다."));
+                ?? throw new GeneralException("Ctor 가 null을 반환했습니다.", "GraphManager_AddNode", ErrorCode.GeneralException));
 
             g.Nodes[node.Id] = node;
             return new NodeHandle(node.Id);
@@ -84,6 +85,7 @@ namespace NodeNetworkSDK.Services
             throw new TypeLoadException($"'{className}'노드를 찾을 수 없습니다.");
         }
 
+        // GraphManager 가 갖고 있는 모든 Nodes 를 반환해준다.
         public IEnumerable<(Guid NodeId, string NodeType, string Display)> ListNodes(GraphId gid)
         {
             var g = G(gid);
@@ -93,6 +95,7 @@ namespace NodeNetworkSDK.Services
             }
         }
 
+        // GraphManager 가 갖고 있는 모든 Edges 를 반환해준다.
         public IEnumerable<(Guid From, string Out, Guid To, string In)> ListEdges(GraphId gid)
         {
             return G(gid).Edges;
@@ -104,13 +107,18 @@ namespace NodeNetworkSDK.Services
         // node 의 meta getter
         public NodeMeta GetNodeMeta(GraphId gid, NodeHandle node) => G(gid).Nodes[node.Value].Meta;
 
+        // IValue 받기.
         public void SetInput(IContext ctx, NodeHandle node, string inputName, IValue value, GraphId gid)
         {
             var meta = GetNodeMeta(gid, node);
             var spec = meta.Inputs.FirstOrDefault(i => i.Name == inputName)
-                       ?? throw new ArgumentException($"No such input '{inputName}'");
+                       ?? throw new InvalidValueException("No such input "+inputName,
+                       "GraphManager_SetInput", ErrorCode.InvalidInput);
+
             if (!spec.Type.IsAssignableFrom(value.Type))
-                throw new ArgumentException($"Type mismatch for '{inputName}' (need {spec.Type.Id}, got {value.Type.Id})");
+                throw new GeneralException("Type mismatch for "+inputName, "GraphManager_SetInput", ErrorCode.InvalidValue);
+
+            // Context 에도 Input 추가해주기.
             ctx.SetInput(node, inputName, value);
             var g = G(gid);
             g.Literals[(node.Value, inputName)] = value;
@@ -139,6 +147,8 @@ namespace NodeNetworkSDK.Services
         public bool Disconnect(GraphId gid, NodeHandle from, string fromOutput, NodeHandle to, string toInput) =>
             G(gid).Edges.Remove((from.Value, fromOutput, to.Value, toInput));
 
+
+        // Kahn 의 위상정렬을 사용하여 그래프에 순환이 있는지 검사한다.
         public (bool OK, IEnumerable<string> Errors) Validate(GraphId gid, IContext ctx)
         {
             var g = G(gid);
@@ -158,7 +168,9 @@ namespace NodeNetworkSDK.Services
                     if (indeg[v] == 0) q.Enqueue(v);
                 }
             }
-            if (seen.Count != g.Nodes.Count) errs.Add("순환 그래프가 형성되었습니다.");
+            if (seen.Count != g.Nodes.Count) 
+                throw new GraphException("순환 그래프가 형성되었습니다.",
+                    "GraphManager_AddNode", ErrorCode.GraphInvalid);
 
             foreach (var (id, n) in g.Nodes)
             {
@@ -173,11 +185,12 @@ namespace NodeNetworkSDK.Services
                         errs.Add($"Missing input: {n.Name}.{p.Name}");
                 }
             }
-
             return (!errs.Any(), errs);
         }
 
         internal Graph Debug_GetGraphSnapshot(GraphId gid) => G(gid);
+
+        // 특정 Graph 에서 특정 node 를 꺼낸다.
         internal INode Debug_GetNode(GraphId gid, Guid id) => G(gid).Nodes[id];
 
         internal void Debug_ReassignNodeIds(GraphId gid,
@@ -219,12 +232,13 @@ namespace NodeNetworkSDK.Services
             foreach (var kv in rl) g.Literals[kv.Key] = kv.Value;
         }
 
+        // Context 를 통해 실행한다.
         public void Execute(GraphId gid, IContext ctx)
         {
             var g = G(gid);
 
             if (ctx is not Context c)
-                throw new ArgumentException("Context must be instance of Context class.");
+                throw new InvalidValueException("Context type 이 아닙니다.", "GraphManager_Execute", ErrorCode.InvalidValue);
 
             var (ok, errs) = Validate(gid, ctx);
             if (!ok)
@@ -233,7 +247,7 @@ namespace NodeNetworkSDK.Services
                 foreach (var e in errs)
                     ctx.Log(" - " + e);
                 ctx.Log("Graph invalid: " + string.Join("; ", errs));
-                throw new InvalidOperationException();
+                throw new GraphException("Graph 생성 불가", "GraphManager_Execute", ErrorCode.GraphInvalid);
             }
 
             var indeg = g.Nodes.Keys.ToDictionary(id => id, _ => 0);
@@ -268,12 +282,18 @@ namespace NodeNetworkSDK.Services
                     var e = g.Edges.FirstOrDefault(x => x.To == id && x.In == p.Name);
                     if (!e.Equals(default((Guid, string, Guid, string))))
                     {
-                        if (outCache.TryGetValue((e.From, e.Out), out var val)) { inputs[p.Name] = val; continue; }
-                        ctx.Log($"Upstream not ready for {node.Name}.{p.Name}");
+                        if (outCache.TryGetValue((e.From, e.Out), out var val)) 
+                        {
+                            inputs[p.Name] = val; 
+                            continue; 
+                        }
+                        throw new InvalidValueException($"해당 output 이 적절하지 않습니다. {node.Name}.{p.Name}",
+                            "GraphManager_Execute", ErrorCode.InvalidOutput);
                     }
 
                     if (p.Required) 
-                        ctx.Log($"Missing input at runtime: {node.Name}.{p.Name}");
+                        throw new InvalidValueException($"input 에 대한 값이 존재하지 않습니다.: {node.Name}.{p.Name}", 
+                            "GraphManager_Execute", ErrorCode.InvalidInput);
                 }
 
                 var nodeOut = node.Execute(inputs);

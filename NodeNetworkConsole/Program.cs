@@ -1,5 +1,5 @@
 ﻿using NodeNetwork.SDK.Models;
-using NodeNetworkSDK.Models.Serializer;
+using NodeNetworkSDK.Services.Serializer;
 using NodeNetworkSDK.Models.Values;
 using NodeNetworkSDK.Services;
 using System;
@@ -8,8 +8,8 @@ using System.Runtime.ConstrainedExecution;
 
 public class Program
 {
-    static void Main()
-    {
+    /* static void Main()
+   {
         Console.WriteLine("Node Network 시작\n");
 
 
@@ -46,7 +46,7 @@ public class Program
 
 
         if (ctx.TryGetOutput(sIf, "out", out var subOut) && subOut is NumberValue subNv)
-            Console.WriteLine($"[SubGraph] If.out = {subNv}"); // 기대: 7 (then 선택)
+            Console.WriteLine($"[SubGraph] If.out = {subNv}"); 
 
 
         Console.WriteLine();
@@ -85,17 +85,19 @@ public class Program
 
 
         if (ctx.TryGetOutput(mIf, "out", out var ifOut) && ifOut is NumberValue ifNv)
-            Console.WriteLine($"[MainGraph] If.out = {ifNv}"); // 기대: 17 (cond=true)
+            Console.WriteLine($"[MainGraph] If.out = {ifNv}"); 
 
         string json = ser.Serialize(mainG);
         Console.WriteLine(json);
 
         var g2 = ser.Deserialize(json);
-        gm.Execute(g2, new Context());
+        Context a = new Context();
+        gm.Execute(g2, a);
 
         Console.WriteLine("\n끝.");
-    }
+    } */
 }
+
 ///////////////////////////// Subgraph
 /*
  * Console.WriteLine("Node Network 시작\n");

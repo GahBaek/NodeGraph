@@ -12,7 +12,25 @@ namespace NodeGraph.ViewModels
         public string FromPort { get; init; }
         public Guid ToNode { get; init; }
         public string ToPort { get; init; }
-        public bool IsValid => FromNode != Guid.Empty && ToNode != Guid.Empty &&
-                               !string.IsNullOrWhiteSpace(FromPort) && !string.IsNullOrWhiteSpace(ToPort);
+        public bool IsValid
+        {
+            get
+            {
+                if (FromNode == Guid.Empty)
+                    return false;
+
+                if (ToNode == Guid.Empty)
+                    return false;
+
+                if (string.IsNullOrWhiteSpace(FromPort))
+                    return false;
+
+                if (string.IsNullOrWhiteSpace(ToPort))
+                    return false;
+
+                return true;
+            }
+        }
+
     }
 }

@@ -26,11 +26,7 @@ namespace NodeGraph.ViewModels
         #endregion
 
         #region constructor
-        public GraphViewModel(
-            GraphManager graphManager,
-            NodeRegistry nodeRegistry,
-            GraphId id,
-            GraphSerializer graphSerializer)
+        public GraphViewModel(GraphManager graphManager, NodeRegistry nodeRegistry, GraphId id, GraphSerializer graphSerializer)
         {
             _graphId = id;
             _graphManager = graphManager;
@@ -38,18 +34,24 @@ namespace NodeGraph.ViewModels
             _nodeRegistry = nodeRegistry;
             _context = new Context();
 
+            // NodeRegistry 에 저장한 Entries 를 NodeTypes에 저장해준다.
             foreach (var n in _nodeRegistry.All())
                 NodeTypes.Add(n.Meta);
         }
         #endregion
 
         #region ObservableCollection
+        // BootStrapper 에서 저장한 모든 Nodes 를 갖고 있다.
         public ObservableCollection<NodeMeta> NodeTypes { get; } = new();
         public ObservableCollection<NodeViewModel> Nodes { get; } = new();
         public ObservableCollection<PortViewModel> Edges { get; } = new();
         #endregion
 
-        public static string GetInstanceName(NodeMeta meta) => meta.Display;
+        // 어떤 Node 인지
+        public static string GetInstanceName(NodeMeta meta) 
+        {
+            return meta.Display;
+        }
 
         #region Commands
 
@@ -59,6 +61,7 @@ namespace NodeGraph.ViewModels
             if (!_nodeRegistry.TryGet(nodeId, out var entry))
                 throw new KeyNotFoundException(nodeId);
 
+            // 추가하려는 Node 의 이름을 반환 받는다.
             var instanceName = GetInstanceName(entry.Meta);
 
             var nodeGuid = _graphManager.AddNode(_graphId, nodeId, instanceName);
@@ -78,12 +81,10 @@ namespace NodeGraph.ViewModels
             if (sel == null || !sel.IsValid)
                 return;
 
-
             _graphManager.Connect(_graphId, new NodeHandle(sel.FromNode), 
                 sel.FromPort, new NodeHandle(sel.ToNode), sel.ToPort);
 
             Edges.Add(new PortViewModel(sel.FromNode, sel.FromPort, sel.ToNode, sel.ToPort));
-
         }
 
         [RelayCommand]
@@ -94,21 +95,27 @@ namespace NodeGraph.ViewModels
 
             _graphManager.Disconnect(_graphId,new NodeHandle(sel.FromNode), sel.FromPort, new NodeHandle(sel.ToNode), sel.ToPort);
 
+            // Edges 에서 해당 Edge 찾기
             var edge = Edges.FirstOrDefault(e =>
                 e.FromNode == sel.FromNode && e.FromPort == sel.FromPort &&
                 e.ToNode == sel.ToNode && e.ToPort == sel.ToPort);
-            if (edge != null) Edges.Remove(edge);
 
+            // 삭제
+            if (edge != null) 
+                Edges.Remove(edge);
         }
 
         [RelayCommand]
         public void Execute()
         {
+            // 순환이 있는 지 검사.
             var (ok, errs) = _graphManager.Validate(_graphId, _context);
+
             if (!ok)
             {
                 return;
             }
+
             _graphManager.Execute(_graphId, _context);
         }
 
@@ -146,13 +153,14 @@ namespace NodeGraph.ViewModels
         }
         #endregion
 
-        #region helpers
-
+        #region private method
+        // Json DeSerialization -> Graph
         private void RebuildViewFromGraph(GraphId id)
         {
             Nodes.Clear();
             Edges.Clear();
 
+            // 해당 Id 를 만족하는 모든 Node 와 Edge 를 반환 받는다.
             var nodes = _graphManager.ListNodes(id);
             foreach (var (nodeId, nodeType, display) in nodes)
             {
@@ -160,6 +168,7 @@ namespace NodeGraph.ViewModels
                     continue;
 
                 var nvm = new NodeViewModel(nodeId, nodeType, display);
+
                 foreach (var p in entry.Meta.Inputs)
                     nvm.Inputs.Add(new PortViewModel(nodeId, p, isInput: true)); 
                 foreach (var p in entry.Meta.Outputs)
@@ -171,7 +180,6 @@ namespace NodeGraph.ViewModels
             var edges = _graphManager.ListEdges(id);
             foreach (var (from, outPort, to, inPort) in edges)
                 Edges.Add(new PortViewModel(from, outPort, to, inPort));
-
         }
         #endregion
     }
