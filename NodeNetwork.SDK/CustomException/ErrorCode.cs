@@ -16,6 +16,8 @@ namespace NodeNetworkSDK.CustomException
         public static readonly ErrorCode InvalidOutput = new("Invalid_Output");
         public static readonly ErrorCode InvalidGraphId = new("Invalid_GraphId");
         public static readonly ErrorCode InvalidValue = new("Invalid_Value");
+        public static readonly ErrorCode InvalidCodec = new("Invalid_Codec");
+        public static readonly ErrorCode InvalidJson = new("Invalid_Json");
 
         public static implicit operator string(ErrorCode c) => c.Value;
     }

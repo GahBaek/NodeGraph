@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NodeGraph")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5020a56cf404e484cbe9a8096704646caba9f0ad")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e474ee535983035460f1236c255d84339a827dfc")]
 [assembly: System.Reflection.AssemblyProductAttribute("NodeGraph")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NodeGraph")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,5 @@
 ﻿using NodeNetwork.SDK.Models;
+using NodeNetworkSDK.CustomException;
 using NodeNetworkSDK.Models.Dtos;
 using NodeNetworkSDK.Models.Nodes;
 using NodeNetworkSDK.Models.Values;
@@ -46,8 +47,11 @@ namespace NodeNetworkSDK.Services.Serializer
             {
                 var (nodeId, input) = kv.Key;
                 var val = kv.Value;
+
                 if (!_codecs.TryGet(val.Type.Id, out var codec) || codec is null)
-                    throw new InvalidOperationException($"No codec for type '{val.Type.Id}'");
+                    throw new InvalidValueException($"No codec for type '{val.Type.Id}'", 
+                        "GraphSerializer_Serialize", ErrorCode.InvalidCodec);
+
                 dto.Literals.Add(new LiteralDto
                 {
                     Node = nodeId,
@@ -63,9 +67,11 @@ namespace NodeNetworkSDK.Services.Serializer
         public GraphId Deserialize(string json)
         {
             var dto = JsonSerializer.Deserialize<GraphDto>(json, _json)
-                      ?? throw new InvalidOperationException("Json 형식이 올바르지 않습니다.");
+                      ?? throw new InvalidValueException("Json 형식이 올바르지 않습니다.", 
+                      "GraphSerializer_Deserialize", ErrorCode.InvalidJson);
             if (dto.SchemaVersion != SchemaVersion)
-                throw new NotSupportedException($"Schema {dto.SchemaVersion} != {SchemaVersion}");
+                throw new GeneralException($"Schema {dto.SchemaVersion} != {SchemaVersion}", 
+                    "GraphSerializer_Deserialize", ErrorCode.InvalidJson);
 
             var gid = _gm.CreateGraph(dto.Name);
 
@@ -92,7 +98,8 @@ namespace NodeNetworkSDK.Services.Serializer
             foreach (var lit in dto.Literals)
             {
                 if (!_codecs.TryGet(lit.TypeId, out var codec) || codec is null)
-                    throw new InvalidOperationException($"No codec for type '{lit.TypeId}'");
+                    throw new InvalidValueException($"No codec for type '{lit.TypeId}'", 
+                        "GraphSerializer_Deserialize", ErrorCode.InvalidCodec);
 
                 var val = codec.FromPayload(lit.Payload!);
                 var nodeNew = new NodeHandle(idMapOldToNew[lit.Node]);
